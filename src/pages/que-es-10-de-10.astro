@@ -3,79 +3,10 @@ import Header from '../components/Header.astro';
 import SliderProyectos from '../components/SliderProyectos.astro';
 import CtaSection from '../components/CtaSection.astro';
 import Footer from '../components/Footer.astro';
+import { projects } from '../data/projects';
 
-const projects = [
-	{
-		image: '/assets/img/proyectos/1.jpg',
-		alt: 'Proyecto 1',
-		category: 'Estudio 1',
-		detail: 'Minimalista | 2024',
-		title: 'Proyecto 1'
-	},
-	{
-		image: '/assets/img/proyectos/2.jpg',
-		alt: 'Proyecto 2',
-		category: 'Estudio 2',
-		detail: 'Minimalista | 2024',
-		title: 'Proyecto 2'
-	},
-	{
-		image: '/assets/img/proyectos/3.jpg',
-		alt: 'Proyecto 3',
-		category: 'Estudio 3',
-		detail: 'Minimalista | 2024',
-		title: 'Proyecto 3'
-	},
-	{
-		image: '/assets/img/proyectos/4.jpg',
-		alt: 'Proyecto 4',
-		category: 'Estudio 4',
-		detail: 'Minimalista | 2024',
-		title: 'Proyecto 4'
-	},
-	{
-		image: '/assets/img/proyectos/5.jpg',
-		alt: 'Proyecto 5',
-		category: 'Estudio 5',
-		detail: 'Minimalista | 2024',
-		title: 'Proyecto 5'
-	},
-	{
-		image: '/assets/img/proyectos/6.jpg',
-		alt: 'Proyecto 6',
-		category: 'Estudio 6',
-		detail: 'Minimalista | 2024',
-		title: 'Proyecto 6'
-	},
-	{
-		image: '/assets/img/proyectos/7.jpg',
-		alt: 'Proyecto 7',
-		category: 'Estudio 7',
-		detail: 'Minimalista | 2024',
-		title: 'Proyecto 7'
-	},
-	{
-		image: '/assets/img/proyectos/8.jpg',
-		alt: 'Proyecto 8',
-		category: 'Estudio 8',
-		detail: 'Minimalista | 2024',
-		title: 'Proyecto 8'
-	},
-	{
-		image: '/assets/img/proyectos/9.jpg',
-		alt: 'Proyecto 9',
-		category: 'Estudio 9',
-		detail: 'Minimalista | 2024',
-		title: 'Proyecto 9'
-	},
-	{
-		image: '/assets/img/proyectos/10.jpg',
-		alt: 'Proyecto 10',
-		category: 'Estudio 10',
-		detail: 'Minimalista | 2024',
-		title: 'Proyecto 10'
-	}
-];
+const latestYear = Math.max(...projects.map((project) => project.year));
+const editionProjects = projects.filter((project) => project.year === latestYear);
 ---
 
 <html lang="es">
@@ -205,7 +136,7 @@ const projects = [
 				</div>
 			</section>
 
-			<SliderProyectos projects={projects} linkHref="/proyectos" linkLabel="VER TODOS LOS PROYECTOS" />
+			<SliderProyectos projects={editionProjects} linkHref="/proyectos" linkLabel="VER TODOS LOS PROYECTOS" />
 
 		<CtaSection/>
 		</main>

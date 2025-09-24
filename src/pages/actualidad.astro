@@ -2,6 +2,9 @@
 import Header from '../components/Header.astro';
 import CtaSection from '../components/CtaSection.astro';
 import Footer from '../components/Footer.astro';
+import SliderPosts from '../components/SliderPosts.astro';
+import GaleriaEvento from '../components/GaleriaEvento.astro';
+import { posts } from '../data/posts';
 ---
 
 <html lang="es">
@@ -59,37 +62,16 @@ import Footer from '../components/Footer.astro';
 			.brandmark{height:140px;width:190px;margin:0 auto}
 			.underline{position:relative;display:inline-block}
 			.underline:after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:#000}
-			.news-grid{display:flex;gap:24px;overflow-x:auto;padding-bottom:16px}
-			.news-card{flex:0 0 517px;display:flex;flex-direction:column;gap:8px}
-			.news-card figure{aspect-ratio:16/11;background:#eee;overflow:hidden;margin:0}
-			.news-card figure img{width:100%;height:100%;object-fit:cover;display:block}
-			.news-card .meta{display:flex;gap:8px;color:var(--c-grey-46);font-size:14px;align-items:center}
-			.news-card .title{font-weight:700;color:#000;text-transform:uppercase;font-size:18px}
-			.event-section{margin-bottom:48px}
-			.event-header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #000;padding-bottom:8px;margin-bottom:24px}
-			.event-title{font-weight:700;font-size:18px;text-transform:uppercase}
-			.event-link{display:flex;align-items:center;gap:8px;color:var(--c-grey-46);font-weight:700;font-size:16px;text-transform:uppercase;text-decoration:none}
-			.event-link:hover{color:#000}
-			.event-grid{display:flex;gap:24px;overflow-x:auto;padding-bottom:16px}
-			.event-card{flex:0 0 382px;display:flex;flex-direction:column;gap:8px}
-			.event-card figure{aspect-ratio:1/1;background:#eee;overflow:hidden;margin:0}
-			.event-card figure img{width:100%;height:100%;object-fit:cover;display:block}
-			.event-card .title{font-weight:700;color:var(--c-grey-46);text-transform:uppercase;font-size:18px;text-align:center}
-			/* Simple responsive adjustments */
-			@media (max-width: 1200px){
-				.grid-4{grid-template-columns:repeat(2,minmax(0,1fr))}
-				.cta-block{flex-direction:column;align-items:center}
-				.news-grid{flex-direction:column;overflow:visible}
-				.news-card{flex:1}
-				.event-grid{flex-direction:column;overflow:visible}
-				.event-card{flex:1}
-			}
-			@media (max-width: 680px){
-				.grid-4{grid-template-columns:1fr}
-				.news-card{flex:1}
-				.event-card{flex:1}
-			}
-		</style>
+			section[data-slider-root]{margin-top:64px;margin-bottom:64px}
+				/* Simple responsive adjustments */
+				@media (max-width: 1200px){
+					.grid-4{grid-template-columns:repeat(2,minmax(0,1fr))}
+					.cta-block{flex-direction:column;align-items:center}
+				}
+				@media (max-width: 680px){
+					.grid-4{grid-template-columns:1fr}
+				}
+			</style>
 			<link rel="stylesheet" href="/assets/css/brand.css" />
 	</head>
 	<body>
@@ -98,164 +80,14 @@ import Footer from '../components/Footer.astro';
 		<main>
 			<section class="px16 py12">
 				<div class="container center">
-					<h1 class="section-title mb0">Diálogos entre diseño, materia y arquitectura</h1>
+					<h1 class="section-title mb0" style="margin-top:96px;">Diálogos entre diseño, materia y arquitectura</h1>
 					<p class="section-sub mt24">Sumérgete en las historias detrás de 10 de 10: entrevistas con los estudios participantes, inspiración de sus propuestas, exploraciones sobre materiales, tendencias de diseño, y la evolución de cada edición.<br>Una mirada editorial a la arquitectura y el interiorismo contemporáneo, contada por quienes lo crean.</p>
 				</div>
 			</section>
 
-			<section class="px16 py12">
-				<div class="container">
-					<div class="event-header">
-						<h2 class="event-title">Mantente al día de nuestras últimas noticias</h2>
-					</div>
-					<div class="news-grid">
-						<article class="news-card">
-							<figure><img src="assets/img/58f67a7b4a832ef65d2c75a22be0c5ebff4aacde.png" alt="V Aniversario Porcelanosa 10 de 10" /></figure>
-							<div class="meta">
-								<img src="assets/img/ca36dfe604adb63b9e892d20f0b5a697a38ebbec.svg" alt="" height="14" />
-								<span>V Aniversario Porcelanosa 10 de 10</span>
-							</div>
-							<div class="meta">
-								<span>2025</span>
-							</div>
-						</article>
-						<article class="news-card">
-							<figure><img src="assets/img/e59bcf4d0c4b019ef1a7547b39d8bf05c087fa16.png" alt="Descubre los ganadores de la edición 2024" /></figure>
-							<div class="meta">
-								<span>2024</span>
-							</div>
-							<div class="title">Descubre los ganadores de la edición 2024</div>
-						</article>
-						<article class="news-card">
-							<figure><img src="assets/img/b4b1780089460b1bac32ff6841b7ff1641b61009.png" alt="Arquitectura en México: 10 de 10 2023" /></figure>
-							<div class="meta">
-								<span>2023</span>
-							</div>
-							<div class="title">Arquitectura en México: 10 de 10 2023</div>
-						</article>
-						<article class="news-card">
-							<figure><img src="assets/img/c791e5f01c79702ed340a2e42cff261468a5c3a8.png" alt="Project odyssey" /></figure>
-							<div class="meta">
-								<span>DesignHub</span>
-								<span style="margin-left:auto">Boutique | 2024</span>
-							</div>
-							<div class="title">Project odyssey</div>
-						</article>
-						<article class="news-card">
-							<figure><img src="assets/img/e85aa12860fc63574e64e92f3e9bbe70ffc5b2b1.png" alt="Project horizon" /></figure>
-							<div class="meta">
-								<span>Creative Minds</span>
-								<span style="margin-left:auto">Boutique | 2024</span>
-							</div>
-							<div class="title">Project horizon</div>
-						</article>
-						<article class="news-card">
-							<figure><img src="assets/img/255f89d456012d16e1ab0debba26fd667a9c5290.png" alt="Project nebula" /></figure>
-							<div class="meta">
-								<span>Pixel Perfect</span>
-								<span style="margin-left:auto">Boutique | 2024</span>
-							</div>
-							<div class="title">Project nebula</div>
-						</article>
-						<article class="news-card">
-							<figure><img src="assets/img/3e020396bc16debd7ff75a4fde90694977522c34.png" alt="Project quantum" /></figure>
-							<div class="meta">
-								<span>Future Designs</span>
-								<span style="margin-left:auto">Boutique | 2024</span>
-							</div>
-							<div class="title">Project quantum</div>
-						</article>
-					</div>
-				</div>
-			</section>
+			<SliderPosts posts={posts} />
 
-			<section class="px16 py12">
-				<div class="container">
-					<div class="event-section">
-						<div class="event-header">
-							<h2 class="event-title">Evento 10 de 10 2024</h2>
-							<a href="#" class="event-link">
-								<span>Ver fotos del evento</span>
-								<img src="assets/img/84a635bec48919fb453e02cee02ae4c195a34966.svg" alt="" height="16" />
-							</a>
-						</div>
-						<div class="event-grid">
-							<div class="event-card">
-								<figure><img src="assets/img/f7d2a9c47247beb94ccd0c9fab6dd9c39b5913ca.png" alt="A Estudio" /></figure>
-								<div class="title">A Estudio</div>
-							</div>
-							<div class="event-card">
-								<figure><img src="assets/img/57448b5268e58bbfa45af33c33e43935ce3b4b38.png" alt="A Estudio" /></figure>
-								<div class="title">A Estudio</div>
-							</div>
-							<div class="event-card">
-								<figure><img src="assets/img/89f344d12b85842a6310e170dc8cc0f705fd54aa.png" alt="A Estudio" /></figure>
-								<div class="title">A Estudio</div>
-							</div>
-							<div class="event-card">
-								<figure><img src="assets/img/961d1eafe8534cf9f833c57cbc3755138b908256.png" alt="A Estudio" /></figure>
-								<div class="title">A Estudio</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="event-section">
-						<div class="event-header">
-							<h2 class="event-title">Evento 10 de 10 2024</h2>
-							<a href="#" class="event-link">
-								<span>Ver fotos del evento</span>
-								<img src="assets/img/84a635bec48919fb453e02cee02ae4c195a34966.svg" alt="" height="16" />
-							</a>
-						</div>
-						<div class="event-grid">
-							<div class="event-card">
-								<figure><img src="assets/img/f7d2a9c47247beb94ccd0c9fab6dd9c39b5913ca.png" alt="A Estudio" /></figure>
-								<div class="title">A Estudio</div>
-							</div>
-							<div class="event-card">
-								<figure><img src="assets/img/57448b5268e58bbfa45af33c33e43935ce3b4b38.png" alt="A Estudio" /></figure>
-								<div class="title">A Estudio</div>
-							</div>
-							<div class="event-card">
-								<figure><img src="assets/img/89f344d12b85842a6310e170dc8cc0f705fd54aa.png" alt="A Estudio" /></figure>
-								<div class="title">A Estudio</div>
-							</div>
-							<div class="event-card">
-								<figure><img src="assets/img/961d1eafe8534cf9f833c57cbc3755138b908256.png" alt="A Estudio" /></figure>
-								<div class="title">A Estudio</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="event-section">
-						<div class="event-header">
-							<h2 class="event-title">Evento 10 de 10 2024</h2>
-							<a href="#" class="event-link">
-								<span>Ver fotos del evento</span>
-								<img src="assets/img/84a635bec48919fb453e02cee02ae4c195a34966.svg" alt="" height="16" />
-							</a>
-						</div>
-						<div class="event-grid">
-							<div class="event-card">
-								<figure><img src="assets/img/f7d2a9c47247beb94ccd0c9fab6dd9c39b5913ca.png" alt="A Estudio" /></figure>
-								<div class="title">A Estudio</div>
-							</div>
-							<div class="event-card">
-								<figure><img src="assets/img/57448b5268e58bbfa45af33c33e43935ce3b4b38.png" alt="A Estudio" /></figure>
-								<div class="title">A Estudio</div>
-							</div>
-							<div class="event-card">
-								<figure><img src="assets/img/89f344d12b85842a6310e170dc8cc0f705fd54aa.png" alt="A Estudio" /></figure>
-								<div class="title">A Estudio</div>
-							</div>
-							<div class="event-card">
-								<figure><img src="assets/img/961d1eafe8534cf9f833c57cbc3755138b908256.png" alt="A Estudio" /></figure>
-								<div class="title">A Estudio</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
+			<GaleriaEvento edicion="2024" />
 
 		<CtaSection/>
 		</main>

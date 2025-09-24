@@ -2,6 +2,12 @@
 import Header from '../components/Header.astro';
 import CtaSection from '../components/CtaSection.astro';
 import Footer from '../components/Footer.astro';
+import SliderProyectos from '../components/SliderProyectos.astro';
+import { studios } from '../data/studios';
+import { projects } from '../data/projects';
+
+const latestYear = Math.max(...projects.map((project) => project.year));
+const editionProjects = projects.filter((project) => project.year === latestYear);
 ---
 
 <html lang="es">
@@ -19,8 +25,8 @@ import Footer from '../components/Footer.astro';
 			*{box-sizing:border-box}
 			html,body{margin:0;padding:0}
 			body{font-family:Lato,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,"Helvetica Neue",Arial,"Apple Color Emoji","Segoe UI Emoji";color:#000;background:#fff}
-			.max{max-width:1728px;margin:0 auto}
-			.container{max-width:1600px;margin:0 auto}
+			.max{max-width:1700px;margin:0 auto}
+			.container{max-width:1700px;margin:0 auto}
 			.px16{padding-left:16px;padding-right:16px}
 			.px20{padding-left:20px;padding-right:20px}
 			.py12{padding-top:48px;padding-bottom:48px}
@@ -44,11 +50,12 @@ import Footer from '../components/Footer.astro';
 			.card figure img{width:100%;height:100%;object-fit:cover;display:block}
 			.card .meta{display:flex;gap:8px;color:var(--c-grey-46);font-size:14px}
 			.card .title{font-weight:700;color:#000;text-transform:uppercase;font-size:18px}
-			.studios .studio{display:flex;flex-direction:column;gap:8px;align-items:center}
-			.studio .thumb{aspect-ratio:412/400;background:#eee;width:100%}
+			.studios{padding-bottom:0;margin-bottom:192px}
+			.studios .studio{display:flex;flex-direction:column;align-items:flex-start;text-align:left}
+			.studio .thumb{aspect-ratio:412/400;background:#eee;width:100%;margin-bottom:16px}
 			.studio .thumb img{width:100%;height:100%;object-fit:cover;display:block}
-			.studio .handle{color:var(--c-grey-100);font-size:14px;font-weight:700}
-			.studio .name{color:#000;font-size:18px;font-weight:700;text-transform:uppercase}
+			.studio .handle{margin:0;color:var(--c-grey-46);font-size:14px;font-weight:100}
+			.studio .name{margin-top:12px;color:#000;font-size:18px;font-weight:700;text-transform:uppercase}
 			.cta-block{display:flex;gap:48px;align-items:flex-end;justify-content:center}
 			.cta-block .image{width:600px;max-width:100%;aspect-ratio:1/1;background-size:cover;background-position:center}
 			.cta-block .copy{width:600px;max-width:100%}
@@ -80,7 +87,7 @@ import Footer from '../components/Footer.astro';
 		<main>
 			<section class="px16 py12">
 				<div class="container center">
-					<h1 class="section-title mb0">Los estudios que dan forma a cada proyecto</h1>
+					<h1 class="section-title mb0" style="margin-top:96px;">Los estudios que dan forma a cada proyecto</h1>
 					<p class="section-sub mt24">10 de 10 reúne cada año a despachos con una visión distintiva del diseño y la arquitectura.<br>Descubre a los participantes de cada edición y conoce el talento detrás de cada espacio creado con materiales PORCELANOSA.</p>
 				</div>
 			</section>
@@ -88,116 +95,23 @@ import Footer from '../components/Footer.astro';
 			<section class="px16 py12 studios">
 				<div class="container">
 					<div class="grid grid-4">
-						<div class="studio">
-							<div class="thumb"><img src="assets/img/b930ffead46c151c7c5d8149f0a65c572a3323df.png" alt="Estudio" /></div>
-							<div class="handle">@_aestudio</div>
-							<div class="name">A ESTUDIO</div>
-						</div>
-						<div class="studio">
-							<div class="thumb"><img src="assets/img/9381d3bc1bc44ced0804a8ae896ef25b1fa0948f.png" alt="Estudio" /></div>
-							<div class="handle">@_aestudio</div>
-							<div class="name">A ESTUDIO</div>
-						</div>
-						<div class="studio">
-							<div class="thumb"><img src="assets/img/8b4a234dfe5233f8c9ae32018335fb9968cd47c6.png" alt="Estudio" /></div>
-							<div class="handle">@_aestudio</div>
-							<div class="name">A ESTUDIO</div>
-						</div>
-						<div class="studio">
-							<div class="thumb"><img src="assets/img/95eea4995a2c9152eeea8dbadd43ddd9257ed397.png" alt="Estudio" /></div>
-							<div class="handle">@_aestudio</div>
-							<div class="name">A ESTUDIO</div>
-						</div>
-						<div class="studio">
-							<div class="thumb"><img src="assets/img/d4cf64d7225a5a2e90e043762bedc6dddf9344f0.png" alt="Estudio" /></div>
-							<div class="handle">@_aestudio</div>
-							<div class="name">A ESTUDIO</div>
-						</div>
-						<div class="studio">
-							<div class="thumb"><img src="assets/img/cc1caa443af6fe3be792fa207455b1f42d6d7cf5.png" alt="Estudio" /></div>
-							<div class="handle">@_aestudio</div>
-							<div class="name">A ESTUDIO</div>
-						</div>
-						<div class="studio">
-							<div class="thumb"><img src="assets/img/7daa89a156d873aed8a15d40cfc161d9094b4890.png" alt="Estudio" /></div>
-							<div class="handle">@_aestudio</div>
-							<div class="name">A ESTUDIO</div>
-						</div>
-						<div class="studio">
-							<div class="thumb"><img src="assets/img/825bb55ae501811821dc9fa9dbdbd0aaa52ee937.png" alt="Estudio" /></div>
-							<div class="handle">@_aestudio</div>
-							<div class="name">A ESTUDIO</div>
-						</div>
-						<div class="studio">
-							<div class="thumb"><img src="assets/img/32f1ad091e712f89438d21ebd5e4d2bf54e266ea.png" alt="Estudio" /></div>
-							<div class="handle">@_aestudio</div>
-							<div class="name">A ESTUDIO</div>
-						</div>
-						<div class="studio">
-							<div class="thumb"><img src="assets/img/37369bfbbea849113fb1beeaddeb66586eee1a8c.png" alt="Estudio" /></div>
-							<div class="handle">@_aestudio</div>
-							<div class="name">A ESTUDIO</div>
-						</div>
+						{studios.map((studio) => (
+							<div class="studio" key={studio.title}>
+								<div class="thumb"><img src={studio.image} alt={studio.alt} /></div>
+								{studio.handle && <div class="handle">{studio.handle}</div>}
+								<div class="name">{studio.title}</div>
+							</div>
+						))}
 					</div>
 				</div>
 			</section>
 
-			<section class="px16 py12">
-				<div class="container">
-					<div class="between py5">
-						<h2 class="uppercase" style="font-weight:700;font-size:18px">Explora los proyectos ganadores de cada edición</h2>
-						<div class="row" aria-hidden="true">
-							<img src="assets/img/49edcabe46c24d4f3a5cc1fdbc205de78c54c11b.svg" alt="prev" height="36" />
-							<img src="assets/img/4ef2351eedf16f9bb4354bb2e6828a2b5a06a581.svg" alt="next" height="36" />
-						</div>
-					</div>
-					<div class="grid grid-5 mt24">
-						<article class="card">
-							<figure><img src="assets/img/e3ece7b7b8f62425503debe77801c85ad4f776d2.png" alt="Proyecto" /></figure>
-							<div class="meta mt12"><span>A Estudio</span><span style="margin-left:auto">Boutique | 2024</span></div>
-							<div class="title mt12">Project blabla</div>
-						</article>
-						<article class="card">
-							<figure><img src="assets/img/b930ffead46c151c7c5d8149f0a65c572a3323df.png" alt="Proyecto" /></figure>
-							<div class="meta mt12"><span>A Estudio</span><span style="margin-left:auto">Boutique | 2024</span></div>
-							<div class="title mt12">Project blabla</div>
-						</article>
-						<article class="card">
-							<figure><img src="assets/img/9381d3bc1bc44ced0804a8ae896ef25b1fa0948f.png" alt="Proyecto" /></figure>
-							<div class="meta mt12"><span>A Estudio</span><span style="margin-left:auto">Boutique | 2024</span></div>
-							<div class="title mt12">Project blabla</div>
-						</article>
-						<article class="card">
-							<figure><img src="assets/img/95eea4995a2c9152eeea8dbadd43ddd9257ed397.png" alt="Proyecto" /></figure>
-							<div class="meta mt12"><span>A Estudio</span><span style="margin-left:auto">Boutique | 2024</span></div>
-							<div class="title mt12">Project blabla</div>
-						</article>
-						<article class="card">
-							<figure><img src="assets/img/8b4a234dfe5233f8c9ae32018335fb9968cd47c6.png" alt="Proyecto" /></figure>
-							<div class="meta mt12"><span>A Estudio</span><span style="margin-left:auto">Boutique | 2024</span></div>
-							<div class="title mt12">Project blabla</div>
-						</article>
-						<article class="card">
-							<figure><img src="assets/img/d4cf64d7225a5a2e90e043762bedc6dddf9344f0.png" alt="Proyecto" /></figure>
-							<div class="meta mt12"><span>A Estudio</span><span style="margin-left:auto">Boutique | 2024</span></div>
-							<div class="title mt12">Project blabla</div>
-						</article>
-						<article class="card">
-							<figure><img src="assets/img/cc1caa443af6fe3be792fa207455b1f42d6d7cf5.png" alt="Proyecto" /></figure>
-							<div class="meta mt12"><span>A Estudio</span><span style="margin-left:auto">Boutique | 2024</span></div>
-							<div class="title mt12">Project blabla</div>
-						</article>
-						<article class="card">
-							<figure><img src="assets/img/7daa89a156d873aed8a15d40cfc161d9094b4890.png" alt="Proyecto" /></figure>
-							<div class="meta mt12"><span>A Estudio</span><span style="margin-left:auto">Boutique | 2024</span></div>
-							<div class="title mt12">Project blabla</div>
-						</article>
-					</div>
-					<div class="row" style="justify-content:flex-end;margin-top:16px">
-						<div class="underline" style="color:var(--c-grey-46);font-weight:700">Ver todos los proyectos</div>
-					</div>
-				</div>
-			</section>
+			<SliderProyectos
+				projects={editionProjects}
+				title="Explora los proyectos ganadores de cada edición"
+				linkHref="/proyectos"
+				linkLabel="VER TODOS LOS PROYECTOS"
+			/>
 
 		<CtaSection/>
 		</main>

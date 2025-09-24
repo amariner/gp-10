@@ -1,72 +1,130 @@
 ---
-import type { ProjectEntry } from '../data/projects';
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { galleryManifest, GALLERY_BASE_PATH } from '../data/gallery';
 
 interface Props {
-	projects: ProjectEntry[];
+	edicion: string;
 	title?: string;
+	limit?: number;
 	linkHref?: string;
 	linkLabel?: string;
 }
 
 const {
-	projects,
-	title = 'Explora los proyectos ganadores de cada edición',
-	linkHref = '#',
-	linkLabel = 'VER TODOS LOS PROYECTOS'
+	edicion,
+	limit = 10,
+	title = `Evento 10 de 10 ${edicion}`,
+	linkHref = `/edicion-${edicion}`,
+	linkLabel = 'VER FOTOS DEL EVENTO'
 } = Astro.props as Props;
 
-const shuffledProjects = projects.slice().sort(() => Math.random() - 0.5);
+const maxImages = Number.isFinite(limit) && limit > 0 ? limit : undefined;
 
+async function loadEditionImages(edition: string) {
+	try {
+		const editionDirUrl = new URL(`../../public/assets/img/galeria-evento/${edition}/`, import.meta.url);
+		const editionDirPath = fileURLToPath(editionDirUrl);
+		const dirEntries = await fs.readdir(editionDirPath, { withFileTypes: true });
 
+		const imageEntries = await Promise.all(
+			dirEntries
+				.filter((entry) => entry.isFile())
+				.filter((entry) => /\.(png|jpe?g|webp|avif|gif)$/i.test(entry.name))
+				.map(async (entry) => {
+					const filePath = path.join(editionDirPath, entry.name);
+					const stats = await fs.stat(filePath);
+					return {
+						name: entry.name,
+						mtime: stats.mtime.getTime()
+					};
+				})
+		);
 
+		const basePath = `/assets/img/galeria-evento/${edition}/`;
+
+		return imageEntries
+			.sort((a, b) => b.mtime - a.mtime)
+			.slice(0, maxImages ?? imageEntries.length)
+			.map((entry) => ({
+				url: `${basePath}${entry.name}`,
+				alt: `Galería evento ${edition}`
+			}));
+	} catch (error) {
+		console.warn(`[GaleriaEvento] No se pudieron cargar imágenes para la edición ${edition}:`, error);
+		return [];
+	}
+}
+
+const manifestImages = galleryManifest[edicion];
+
+const slides = manifestImages && manifestImages.length
+	? manifestImages
+		.slice(0, maxImages ?? manifestImages.length)
+		.map((filename) => ({
+			url: `${GALLERY_BASE_PATH}/${edicion}/${filename}`,
+			alt: `Galería evento ${edicion}`
+		}))
+	: await loadEditionImages(edicion);
 const sliderId = `slider-${Math.random().toString(36).slice(2, 10)}`;
 ---
 
-
-<section class="slider-section" data-slider-id={sliderId} data-slider-root>
-	<div class="slider-inner">
-		<div class="header-row">
-			<h3 class="uppercase slider-title">
-				{title}
-			</h3>
-			<div aria-hidden="true" class="nav-wrapper">
-				<button class="nav-btn prev-btn" type="button" aria-label="Proyecto anterior">
-					<img src="assets/img/49edcabe46c24d4f3a5cc1fdbc205de78c54c11b.svg" alt="prev" />
-				</button>
-				<button class="nav-btn next-btn" type="button" aria-label="Proyecto siguiente">
-					<img src="assets/img/49edcabe46c24d4f3a5cc1fdbc205de78c54c11b.svg" alt="next" class="icon-rotate" />
-				</button>
+{slides.length ? (
+<section class="slider-section slider-block" data-slider-id={sliderId} data-slider-root>
+		<div class="slider-inner">
+			<div class="header-row">
+				<h3 class="uppercase slider-title">{title}</h3>
+				<div aria-hidden="true" class="nav-wrapper">
+					<button class="nav-btn prev-btn" type="button" aria-label="Imagen anterior">
+						<img src="assets/img/49edcabe46c24d4f3a5cc1fdbc205de78c54c11b.svg" alt="prev" />
+					</button>
+					<button class="nav-btn next-btn" type="button" aria-label="Imagen siguiente">
+						<img src="assets/img/49edcabe46c24d4f3a5cc1fdbc205de78c54c11b.svg" alt="next" class="icon-rotate" />
+					</button>
+				</div>
+			</div>
+			<div class="slider-container">
+				<div class="slider-track">
+					{slides.map((slide) => (
+						<div class="slider-item">
+							<a href={linkHref} class="slide-link">
+								<article class="card">
+									<figure>
+										<img src={slide.url} alt={slide.alt} loading="lazy" />
+									</figure>
+								</article>
+							</a>
+						</div>
+					))}
+				</div>
+			</div>
+			<div class="link-row">
+				<a href={linkHref} class="link-more">{linkLabel}</a>
 			</div>
 		</div>
-		<div class="slider-container">
-		<div class="slider-track">
-			{shuffledProjects.map((project, i) => (
-				<div class="slider-item">
-					<a href={project.url ?? `/proyecto-${i+1}`} class="slide-link">
-						<article class="card">
-							<figure><img src={project.image} alt={project.alt} /></figure>
-							<div class="meta">
-								<span>{project.category}</span>
-								<span class="meta-detail">{project.detail}</span>
-							</div>
-							<div class="title">{project.title}</div>
-						</article>
-					</a>
-				</div>
-			))}
-		</div>
-		</div>
-		<div class="link-row">
-			<a href={linkHref} class="link-more">{linkLabel}</a>
-		</div>
-	</div>
-</section>
+	</section>
+) : null}
 
 <style>
-	[data-slider-root] .slider-section {
-		--slider-edge-space: clamp(16px, 5vw, 72px);
+	[data-slider-root].slider-block {
+		margin: 64px 0;
+	}
+
+	[data-slider-root].slider-section {
+		--slider-edge-space: 0;
 		background: transparent;
-		padding: 48px 16px;
+		padding: 48px 0;
+	}
+
+	[data-slider-root] .slider-inner {
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	[data-slider-root] .slider-container {
+		padding-left: 0;
+		padding-right: 0;
 	}
 
 	[data-slider-root] .slider-inner {
@@ -154,48 +212,20 @@ const sliderId = `slider-${Math.random().toString(36).slice(2, 10)}`;
 	[data-slider-root] .card {
 		display: flex;
 		flex-direction: column;
-		gap: 6px;
 	}
 
 	[data-slider-root] .card figure {
 		margin: 0;
-		aspect-ratio: 16 / 11;
+		aspect-ratio: 1 / 1;
 		background: var(--c-grey-84);
 		overflow: hidden;
 	}
-
 
 	[data-slider-root] .card figure img {
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
 		display: block;
-	}
-
-	[data-slider-root] .slider-container .meta {
-		display: flex;
-		gap: 12px;
-		font-size: 12px;
-		margin-top: 4px;
-		margin-bottom: 3px;
-		color: var(--c-grey-46);
-	}
-
-	[data-slider-root] .slider-container .meta span {
-		font-size: 12px;
-		text-decoration: none;
-	}
-
-	[data-slider-root] .slider-container .meta-detail {
-		margin-left: auto;
-	}
-
-	[data-slider-root] .slider-container .title {
-		font-size: 18px;
-		margin-top: 3px;
-		font-weight: 700;
-		text-transform: uppercase;
-		color: var(--c-grey-16);
 	}
 
 	[data-slider-root] .nav-wrapper {
@@ -218,13 +248,14 @@ const sliderId = `slider-${Math.random().toString(36).slice(2, 10)}`;
 
 	[data-slider-root] .link-more {
 		color: var(--c-grey-46);
-		cursor: pointer;
-		cursor: pointer;
 		font-weight: 700;
+		text-transform: uppercase;
 		text-decoration: none;
 		font-size: 12px;
 		letter-spacing: 0.02em;
+		cursor: pointer;
 	}
+
 	[data-slider-root] .slide-link {
 		display: block;
 		text-decoration: none;
@@ -240,8 +271,8 @@ const sliderId = `slider-${Math.random().toString(36).slice(2, 10)}`;
 
 	@media (min-width: 960px) {
 		[data-slider-root] .slider-item {
-			flex: 0 0 calc((100% - (var(--slider-gap) * 2)) / 3);
-			max-width: calc((100% - (var(--slider-gap) * 2)) / 3);
+			flex: 0 0 calc((100% - (var(--slider-gap) * 3)) / 4);
+			max-width: calc((100% - (var(--slider-gap) * 3)) / 4);
 		}
 	}
 </style>
@@ -260,10 +291,6 @@ const sliderId = `slider-${Math.random().toString(36).slice(2, 10)}`;
 			if (!sliderTrack) {
 				return;
 			}
-			// Mezclar aleatoriamente los items en el DOM en cada carga
-			Array.from(sliderTrack.children)
-				.sort(() => Math.random() - 0.5)
-				.forEach(item => sliderTrack.appendChild(item));
 
 			const prevBtn = root.querySelector('.prev-btn');
 			const nextBtn = root.querySelector('.next-btn');
@@ -283,19 +310,6 @@ const sliderId = `slider-${Math.random().toString(36).slice(2, 10)}`;
 			let dragLatestX = 0;
 			let baseTransform = 0;
 			const DRAG_MIN_THRESHOLD = 30;
-
-			function getItemMetrics() {
-				const sampleItem = sliderTrack.querySelector('.slider-item');
-				if (!sampleItem) {
-					return { width: 0, step: 0 };
-				}
-				const width = sampleItem.getBoundingClientRect().width;
-				const trackStyle = window.getComputedStyle(sliderTrack);
-				const gapFromVar = parseFloat(trackStyle.getPropertyValue('--slider-gap'));
-				const gapFallback = parseFloat(trackStyle.columnGap || trackStyle.gap || trackStyle.rowGap || '0');
-				const gapValue = (!Number.isNaN(gapFromVar) ? gapFromVar : undefined) ?? (!Number.isNaN(gapFallback) ? gapFallback : 0);
-				return { width, step: width + gapValue };
-			}
 
 			function maxStartIndex() {
 				return Math.max(sliderItems.length - visibleItemsCount, 0);
@@ -343,7 +357,7 @@ const sliderId = `slider-${Math.random().toString(36).slice(2, 10)}`;
 				const viewportWidth = window.innerWidth || containerWidth;
 				let desiredVisible = 1;
 				if (viewportWidth >= 960) {
-					desiredVisible = 3;
+					desiredVisible = 4;
 				} else if (viewportWidth >= 768) {
 					desiredVisible = 2;
 				}
@@ -355,21 +369,21 @@ const sliderId = `slider-${Math.random().toString(36).slice(2, 10)}`;
 			}
 
 			function nextSlide() {
-			if (sliderItems.length <= 1) {
-				return;
-			}
-			currentIndex += stepSize;
-			if (currentIndex > maxStartIndex()) {
+				if (sliderItems.length <= 1) {
+					return;
+				}
+				currentIndex += stepSize;
+				if (currentIndex > maxStartIndex()) {
 					currentIndex = 0;
 				}
 				applyTransform();
 			}
 
 			function prevSlide() {
-			if (sliderItems.length <= 1) {
-				return;
-			}
-			currentIndex -= stepSize;
+				if (sliderItems.length <= 1) {
+					return;
+				}
+				currentIndex -= stepSize;
 				if (currentIndex < 0) {
 					currentIndex = maxStartIndex();
 				}
@@ -377,6 +391,10 @@ const sliderId = `slider-${Math.random().toString(36).slice(2, 10)}`;
 			}
 
 			function pointerDown(event) {
+				const targetElement = event.target instanceof Element ? event.target : null;
+				if (targetElement && targetElement.closest('a, button')) {
+					return;
+				}
 				if (sliderItems.length <= visibleItemsCount) {
 					return;
 				}
@@ -427,8 +445,7 @@ const sliderId = `slider-${Math.random().toString(36).slice(2, 10)}`;
 				const delta = dragLatestX - dragStartX;
 				isPointerDragging = false;
 				dragPointerId = null;
-				const { width } = getItemMetrics();
-				const threshold = Math.max(DRAG_MIN_THRESHOLD, width * 0.12);
+				const threshold = Math.max(DRAG_MIN_THRESHOLD, sliderItems[0]?.getBoundingClientRect().width * 0.12 || DRAG_MIN_THRESHOLD);
 				if (Math.abs(delta) > threshold && sliderItems.length > visibleItemsCount) {
 					if (delta < 0) {
 						nextSlide();
@@ -450,19 +467,15 @@ const sliderId = `slider-${Math.random().toString(36).slice(2, 10)}`;
 			recalc();
 			applyTransform(true);
 
-			if (nextBtn) {
-				nextBtn.addEventListener('click', () => {
-					restartAutoplay();
-					nextSlide();
-				});
-			}
+			nextBtn?.addEventListener('click', () => {
+				restartAutoplay();
+				nextSlide();
+			});
 
-			if (prevBtn) {
-				prevBtn.addEventListener('click', () => {
-					restartAutoplay();
-					prevSlide();
-				});
-			}
+			prevBtn?.addEventListener('click', () => {
+				restartAutoplay();
+				prevSlide();
+			});
 
 			window.addEventListener('resize', () => {
 				window.clearTimeout(resizeTimeout);

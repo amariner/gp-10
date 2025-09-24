@@ -141,13 +141,13 @@ import SideMenu from './SideMenu.astro';
   document.addEventListener('DOMContentLoaded', () => {
     const header = document.querySelector('.site-header') as HTMLElement;
     if (!header) return;
-+   header.classList.add('header--visible');
+    header.classList.add('header--visible');
     function applyTheme(isLight: boolean) {
       header!.classList.toggle('theme-light', !!isLight);
       header!.classList.toggle('theme-dark', !isLight);
     }
-    const hero = document.querySelector('.hero') as HTMLElement;
-    if (hero) {
+    const hero = document.querySelector('.hero') as HTMLElement | null;
+    if (hero && hero.dataset.headerTheme !== 'light') {
       // Home: start dark (white logo/menu on transparent), switch to light after hero
       function updateTheme() {
         const heroRect = hero!.getBoundingClientRect();

@@ -1,0 +1,206 @@
+---
+import Header from '../components/Header.astro';
+import CtaSection from '../components/CtaSection.astro';
+import Footer from '../components/Footer.astro';
+import { projects } from '../data/projects';
+
+const sortedProjects = [...projects].sort((a, b) => b.year - a.year);
+
+const years = [...new Set(sortedProjects.map((project) => project.year))].sort((a, b) => b - a);
+---
+
+<html lang="es">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="https://www.porcelanosa.com/PIcon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Proyectos — 10 de 10</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet" />
+		<style>
+			:root{--c-white:#ffffff;--c-black:#000000;--c-grey-84:#d5d5d5;--c-grey-46:#767676;--c-grey-34:#575757;--c-grey-16:#2b2c28;--c-grey-100:#939393}
+			*{box-sizing:border-box}
+			html,body{margin:0;padding:0}
+			body{font-family:Lato,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,"Helvetica Neue",Arial,"Apple Color Emoji","Segoe UI Emoji";color:#000;background:#fff}
+			.max{max-width:1728px;margin:0 auto}
+			.container{max-width:1600px;margin:0 auto}
+			.px16{padding-left:16px;padding-right:16px}
+			.px20{padding-left:20px;padding-right:20px}
+			.py12{padding-top:48px;padding-bottom:48px}
+			.py5{padding-top:20px;padding-bottom:20px}
+			.py0{padding-top:0;padding-bottom:0}
+			.mt24{margin-top:24px}
+			.mb0{margin-bottom:0}
+			.center{text-align:center}
+			.uppercase{text-transform:uppercase}
+			.grid{display:grid;gap:24px}
+			.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+			.row{display:flex;gap:24px}
+			.between{display:flex;justify-content:space-between;align-items:center}
+			header.site-header{position:sticky;top:0;height:86px;display:flex;align-items:center;justify-content:center;z-index:10;background:#fff}
+			header.site-header .bar{height:86px;border-bottom:1px solid var(--c-grey-84);display:flex;align-items:center;justify-content:center}
+			header .logo{font-family:"Porcelanosa",serif;font-weight:400;font-size:32px;line-height:64px;letter-spacing:.02em;color:#000}
+			.section-title{font-weight:700;color:var(--c-grey-16);font-size:24px}
+			.section-sub{color:var(--c-grey-46);font-size:18px;line-height:1.5}
+			.card{display:flex;flex-direction:column}
+			.card-link{display:flex;flex-direction:column;text-decoration:none;color:inherit}
+			.card figure{aspect-ratio:16/11;background:#eee;overflow:hidden;margin:0}
+			.card figure img{width:100%;height:100%;object-fit:cover;display:block}
+			.card .meta{display:flex;gap:12px;color:var(--c-grey-46);font-size:14px;align-items:center;margin:16px 0 0}
+			.card .meta-detail{margin-left:auto}
+			.card .title{font-weight:700;color:#000;text-transform:uppercase;font-size:18px;margin:12px 0 24px}
+			.cta-block{display:flex;gap:48px;align-items:flex-end;justify-content:center}
+			.cta-block .image{width:600px;max-width:100%;aspect-ratio:1/1;background-size:cover;background-position:center}
+			.cta-block .copy{width:600px;max-width:100%}
+			.link-stroke{height:50px;display:grid;place-items:center;padding:0 22px;border:2px solid #000}
+			footer.site-footer{border-top:1px solid var(--c-grey-84)}
+			.footer-top{border-bottom:1px solid var(--c-grey-84)}
+			.footer-menu{display:flex;gap:16px}
+			.footer-menu a{font-weight:700;font-size:16px;line-height:26px;color:#767676;text-decoration:none;text-transform:uppercase}
+			.social{display:flex;gap:12px}
+			.social .dot{height:32px;width:32px;border-radius:16px;background:#000;display:grid;place-items:center}
+			.copyright{color:var(--c-grey-100);font-size:12.8px}
+			.brandmark{height:140px;width:190px;margin:0 auto}
+				.filters{display:flex;flex-direction:row;justify-content:flex-end;align-items:flex-start;gap:48px;width:100%;max-width:1600px;margin-bottom:48px;padding:0}
+				.filter-block{display:flex;flex-direction:column;width:400px;max-width:100%;background:#fff;border:none;border-radius:28px 28px 0 0;padding:8px 16px 12px}
+				.filter-header{display:flex;align-items:center;justify-content:space-between;width:100%;padding:16px 0 0}
+				.filter-icon{display:none}
+				.filter-content{flex:1;padding:0}
+				.filter-input{width:100%;border:none;outline:none;background:transparent;font-family:Lato,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,"Helvetica Neue",Arial,"Apple Color Emoji","Segoe UI Emoji";font-size:16px;line-height:24px;letter-spacing:.5px;color:var(--c-grey-46);padding:0}
+				.filter-input::placeholder{color:var(--c-grey-46)}
+				.filter-trailing{display:flex;justify-content:center;align-items:center;width:24px;height:24px;flex-shrink:0;margin-right:0}
+				.filter-trailing img{width:12px;height:12px;object-fit:contain;transform:none}
+				.filter-block::after{content:"";display:block;width:100%;height:1px;background:var(--c-grey-84);margin:12px 0 0}
+				.filter-divider{display:none}
+				.filter-select select{appearance:none;-webkit-appearance:none;-moz-appearance:none;cursor:pointer}
+				.filter-select .filter-input{cursor:pointer}
+				.filter-search .filter-content{padding:0}
+				.filter-clear{display:none}
+				.filter-clear:hover{background:rgba(0,0,0,0.05)}
+				.filter-clear:focus-visible{outline:2px solid #000;outline-offset:2px}
+				[data-project-grid] .card[hidden]{display:none!important}
+				.empty-state{margin-top:32px;color:var(--c-grey-46);font-size:16px;text-align:center}
+			/* Simple responsive adjustments */
+				@media (max-width: 1200px){
+					.grid-3{grid-template-columns:repeat(2,minmax(0,1fr))}
+					.cta-block{flex-direction:column;align-items:center}
+					.filters{flex-direction:column;align-items:stretch;gap:16px}
+					.filter-block{width:100%}
+				}
+			@media (max-width: 680px){
+				.grid-3{grid-template-columns:1fr}
+			}
+		</style>
+			<link rel="stylesheet" href="/assets/css/brand.css" />
+	</head>
+	<body>
+		<Header />
+
+		<main>
+			<section class="px16 py12">
+				<div class="container center" style="max-width:960px;margin:0 auto;">
+					<h1 class="section-title mb0" style="margin-top:96px;">Los espacios de cada edición</h1>
+					<p class="section-sub mt24">Explora los proyectos seleccionados en las distintas ediciones de 10 de 10: propuestas arquitectónicas que redefinen el diseño de interiores a través de la luz, los materiales y la relación con el entorno natural.</p>
+				</div>
+			</section>
+
+				<section class="px16 py12">
+					<div class="container">
+						<div class="filters" role="region" aria-label="Filtros de proyectos">
+							<div class="filter-block filter-select">
+								<label class="filter-header" for="project-year">
+									<div class="filter-content">
+										<select id="project-year" class="filter-input" aria-label="Filtrar por edición">
+											<option value="">Filtrar por edición</option>
+											{years.map((year) => (
+												<option value={year}>{year}</option>
+											))}
+										</select>
+									</div>
+									<span class="filter-trailing" aria-hidden="true">
+										<svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+											<path d="M7 4.97297L1.63333 0L0 1.51351L7 8L14 1.51351L12.3667 0L7 4.97297Z" fill="black" />
+										</svg>
+									</span>
+								</label>
+							</div>
+							<div class="filter-block filter-search">
+								<div class="filter-header">
+									<div class="filter-content">
+										<input id="project-search" type="search" class="filter-input" placeholder="Buscar" autocomplete="off" aria-label="Buscar proyectos" />
+									</div>
+									<span class="filter-trailing" aria-hidden="true">
+										<img src="assets/img/173a35c86e0a8bd0cfb8e7a945894eb1a605ab7c.svg" alt="" />
+									</span>
+								</div>
+							</div>
+						</div>
+
+						<div class="grid grid-3" data-project-grid>
+							{sortedProjects.map((project) => (
+								<article class="card" data-project-card data-year={project.year} data-search={`${project.title} ${project.category} ${project.detail}`.toLowerCase()}>
+									<a href={project.url ?? '#'} class="card-link">
+										<figure><img src={project.image} alt={project.alt} /></figure>
+										<div class="meta"><span>{project.category}</span><span class="meta-detail">{project.detail}</span></div>
+										<div class="title">{project.title}</div>
+									</a>
+								</article>
+							))}
+						</div>
+						<p class="empty-state" data-filter-empty hidden>No se encontraron proyectos para los filtros seleccionados.</p>
+					</div>
+			</section>
+
+			<script>
+				document.addEventListener('DOMContentLoaded', () => {
+					const yearSelect = document.getElementById('project-year');
+					const searchInput = document.getElementById('project-search');
+					const grid = document.querySelector('[data-project-grid]');
+					if (!yearSelect || !searchInput || !grid) {
+						return;
+					}
+					const cards = Array.from(grid.querySelectorAll('[data-project-card]'));
+					const emptyMessage = document.querySelector('[data-filter-empty]');
+					const normalizeText = (value) => {
+						if (typeof value.normalize === 'function') {
+							return value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+						}
+						return value.toLowerCase();
+					};
+					const cardSearchCache = new Map();
+					cards.forEach((card) => {
+						cardSearchCache.set(card, normalizeText(card.dataset.search || ''));
+					});
+					const applyFilters = () => {
+						const selectedYear = yearSelect.value;
+						const searchTerm = normalizeText(searchInput.value.trim());
+						let visibleCount = 0;
+						cards.forEach((card) => {
+							const matchesYear = !selectedYear || card.dataset.year === selectedYear;
+							const cardSearch = cardSearchCache.get(card) || '';
+							const matchesSearch = !searchTerm || cardSearch.includes(searchTerm);
+							const shouldShow = matchesYear && matchesSearch;
+							card.hidden = !shouldShow;
+							if (shouldShow) {
+								visibleCount += 1;
+							}
+						});
+						if (emptyMessage) {
+							emptyMessage.hidden = visibleCount !== 0;
+						}
+					};
+					yearSelect.addEventListener('change', applyFilters);
+					searchInput.addEventListener('input', applyFilters);
+					searchInput.addEventListener('search', applyFilters);
+					applyFilters();
+				});
+			</script>
+
+		<CtaSection/>
+		</main>
+
+		<Footer/>
+	</body>
+</html>

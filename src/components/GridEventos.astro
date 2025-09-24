@@ -1,0 +1,110 @@
+---
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { galleryManifest, GALLERY_BASE_PATH } from '../data/gallery';
+
+interface Props {
+	edicion: string;
+	limit?: number;
+}
+
+const {
+	edicion,
+	limit,
+} = Astro.props as Props;
+
+const maxImages = typeof limit === 'number' && Number.isFinite(limit) && limit > 0 ? limit : undefined;
+
+async function loadEditionImages(edition: string) {
+	try {
+		const editionDirUrl = new URL(`../../public/assets/img/galeria-evento/${edition}/`, import.meta.url);
+		const editionDirPath = fileURLToPath(editionDirUrl);
+		const dirEntries = await fs.readdir(editionDirPath, { withFileTypes: true });
+
+		const imageEntries = await Promise.all(
+			dirEntries
+				.filter((entry) => entry.isFile())
+				.filter((entry) => /\.(png|jpe?g|webp|avif|gif)$/i.test(entry.name))
+				.map(async (entry) => {
+					const filePath = path.join(editionDirPath, entry.name);
+					const stats = await fs.stat(filePath);
+					return {
+						name: entry.name,
+						mtime: stats.mtime.getTime()
+					};
+				})
+		);
+
+		const basePath = `/assets/img/galeria-evento/${edition}/`;
+
+		return imageEntries
+			.sort((a, b) => a.mtime - b.mtime)
+			.slice(0, maxImages ?? imageEntries.length)
+			.map((entry) => ({
+				url: `${basePath}${entry.name}`,
+				alt: `Galería evento ${edition}`
+			}));
+	} catch (error) {
+		console.warn(`[GridEventos] No se pudieron cargar imágenes para la edición ${edition}:`, error);
+		return [];
+	}
+}
+
+const manifestImages = galleryManifest[edicion];
+
+const images = manifestImages && manifestImages.length
+	? manifestImages
+		.slice(0, maxImages ?? manifestImages.length)
+		.map((filename) => ({
+			url: `${GALLERY_BASE_PATH}/${edicion}/${filename}`,
+			alt: `Galería evento ${edicion}`
+		}))
+	: await loadEditionImages(edicion);
+---
+
+{images.length ? (
+	<section class="grid-eventos" data-grid-root>
+		<div class="grid-inner">
+			{images.map((image) => (
+				<figure class="grid-item">
+					<img src={image.url} alt={image.alt} loading="lazy" />
+				</figure>
+			))}
+		</div>
+	</section>
+) : null}
+
+<style>
+	[data-grid-root].grid-eventos {
+		margin: 64px 0;
+	}
+
+	[data-grid-root] .grid-inner {
+		column-count: 3;
+		column-gap: 12px;
+	}
+
+	[data-grid-root] .grid-item {
+		margin: 0 0 12px;
+		break-inside: avoid;
+	}
+
+	[data-grid-root] .grid-item img {
+		width: 100%;
+		display: block;
+		border-radius: 0;
+	}
+
+	@media (max-width: 1024px) {
+		[data-grid-root] .grid-inner {
+			column-count: 2;
+		}
+	}
+
+	@media (max-width: 640px) {
+		[data-grid-root] .grid-inner {
+			column-count: 1;
+		}
+	}
+</style>

@@ -1,60 +1,55 @@
 ---
-import type { ProjectEntry } from '../data/projects';
+import type { PostEntry } from '../data/posts';
 
 interface Props {
-	projects: ProjectEntry[];
+	posts: PostEntry[];
 	title?: string;
 	linkHref?: string;
 	linkLabel?: string;
 }
 
 const {
-	projects,
-	title = 'Explora los proyectos ganadores de cada edición',
-	linkHref = '#',
-	linkLabel = 'VER TODOS LOS PROYECTOS'
+	posts,
+	title = 'Mantente al día de nuestras últimas noticias',
+	linkHref = '/actualidad',
+	linkLabel = 'VER TODAS LAS NOTICIAS'
 } = Astro.props as Props;
 
-const shuffledProjects = projects.slice().sort(() => Math.random() - 0.5);
-
-
-
+const shuffledPosts = posts.slice().sort(() => Math.random() - 0.5);
 const sliderId = `slider-${Math.random().toString(36).slice(2, 10)}`;
 ---
 
-
-<section class="slider-section" data-slider-id={sliderId} data-slider-root>
+<section class="slider-section slider-block" data-slider-id={sliderId} data-slider-root>
 	<div class="slider-inner">
 		<div class="header-row">
 			<h3 class="uppercase slider-title">
 				{title}
 			</h3>
 			<div aria-hidden="true" class="nav-wrapper">
-				<button class="nav-btn prev-btn" type="button" aria-label="Proyecto anterior">
+				<button class="nav-btn prev-btn" type="button" aria-label="Post anterior">
 					<img src="assets/img/49edcabe46c24d4f3a5cc1fdbc205de78c54c11b.svg" alt="prev" />
 				</button>
-				<button class="nav-btn next-btn" type="button" aria-label="Proyecto siguiente">
+				<button class="nav-btn next-btn" type="button" aria-label="Post siguiente">
 					<img src="assets/img/49edcabe46c24d4f3a5cc1fdbc205de78c54c11b.svg" alt="next" class="icon-rotate" />
 				</button>
 			</div>
 		</div>
 		<div class="slider-container">
-		<div class="slider-track">
-			{shuffledProjects.map((project, i) => (
-				<div class="slider-item">
-					<a href={project.url ?? `/proyecto-${i+1}`} class="slide-link">
-						<article class="card">
-							<figure><img src={project.image} alt={project.alt} /></figure>
-							<div class="meta">
-								<span>{project.category}</span>
-								<span class="meta-detail">{project.detail}</span>
-							</div>
-							<div class="title">{project.title}</div>
-						</article>
-					</a>
-				</div>
-			))}
-		</div>
+			<div class="slider-track">
+				{shuffledPosts.map((post) => (
+					<div class="slider-item">
+						<a href={post.link} class="slide-link">
+							<article class="card">
+								<figure><img src={post.image} alt={post.alt ?? post.title} /></figure>
+								<div class="meta">
+									<span>{post.date}</span>
+								</div>
+								<div class="title">{post.title}</div>
+							</article>
+						</a>
+					</div>
+				))}
+			</div>
 		</div>
 		<div class="link-row">
 			<a href={linkHref} class="link-more">{linkLabel}</a>
@@ -63,10 +58,24 @@ const sliderId = `slider-${Math.random().toString(36).slice(2, 10)}`;
 </section>
 
 <style>
-	[data-slider-root] .slider-section {
-		--slider-edge-space: clamp(16px, 5vw, 72px);
+	[data-slider-root].slider-block {
+		margin: 64px 0;
+	}
+
+	[data-slider-root].slider-section {
+		--slider-edge-space: 0;
 		background: transparent;
-		padding: 48px 16px;
+		padding: 48px 0;
+	}
+
+	[data-slider-root] .slider-inner {
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	[data-slider-root] .slider-container {
+		padding-left: 0;
+		padding-right: 0;
 	}
 
 	[data-slider-root] .slider-inner {
@@ -164,7 +173,6 @@ const sliderId = `slider-${Math.random().toString(36).slice(2, 10)}`;
 		overflow: hidden;
 	}
 
-
 	[data-slider-root] .card figure img {
 		width: 100%;
 		height: 100%;
@@ -184,10 +192,6 @@ const sliderId = `slider-${Math.random().toString(36).slice(2, 10)}`;
 	[data-slider-root] .slider-container .meta span {
 		font-size: 12px;
 		text-decoration: none;
-	}
-
-	[data-slider-root] .slider-container .meta-detail {
-		margin-left: auto;
 	}
 
 	[data-slider-root] .slider-container .title {
@@ -219,12 +223,12 @@ const sliderId = `slider-${Math.random().toString(36).slice(2, 10)}`;
 	[data-slider-root] .link-more {
 		color: var(--c-grey-46);
 		cursor: pointer;
-		cursor: pointer;
 		font-weight: 700;
 		text-decoration: none;
 		font-size: 12px;
 		letter-spacing: 0.02em;
 	}
+
 	[data-slider-root] .slide-link {
 		display: block;
 		text-decoration: none;
@@ -260,10 +264,10 @@ const sliderId = `slider-${Math.random().toString(36).slice(2, 10)}`;
 			if (!sliderTrack) {
 				return;
 			}
-			// Mezclar aleatoriamente los items en el DOM en cada carga
+
 			Array.from(sliderTrack.children)
 				.sort(() => Math.random() - 0.5)
-				.forEach(item => sliderTrack.appendChild(item));
+				.forEach((item) => sliderTrack.appendChild(item));
 
 			const prevBtn = root.querySelector('.prev-btn');
 			const nextBtn = root.querySelector('.next-btn');
@@ -283,19 +287,6 @@ const sliderId = `slider-${Math.random().toString(36).slice(2, 10)}`;
 			let dragLatestX = 0;
 			let baseTransform = 0;
 			const DRAG_MIN_THRESHOLD = 30;
-
-			function getItemMetrics() {
-				const sampleItem = sliderTrack.querySelector('.slider-item');
-				if (!sampleItem) {
-					return { width: 0, step: 0 };
-				}
-				const width = sampleItem.getBoundingClientRect().width;
-				const trackStyle = window.getComputedStyle(sliderTrack);
-				const gapFromVar = parseFloat(trackStyle.getPropertyValue('--slider-gap'));
-				const gapFallback = parseFloat(trackStyle.columnGap || trackStyle.gap || trackStyle.rowGap || '0');
-				const gapValue = (!Number.isNaN(gapFromVar) ? gapFromVar : undefined) ?? (!Number.isNaN(gapFallback) ? gapFallback : 0);
-				return { width, step: width + gapValue };
-			}
 
 			function maxStartIndex() {
 				return Math.max(sliderItems.length - visibleItemsCount, 0);
@@ -355,21 +346,21 @@ const sliderId = `slider-${Math.random().toString(36).slice(2, 10)}`;
 			}
 
 			function nextSlide() {
-			if (sliderItems.length <= 1) {
-				return;
-			}
-			currentIndex += stepSize;
-			if (currentIndex > maxStartIndex()) {
+				if (sliderItems.length <= 1) {
+					return;
+				}
+				currentIndex += stepSize;
+				if (currentIndex > maxStartIndex()) {
 					currentIndex = 0;
 				}
 				applyTransform();
 			}
 
 			function prevSlide() {
-			if (sliderItems.length <= 1) {
-				return;
-			}
-			currentIndex -= stepSize;
+				if (sliderItems.length <= 1) {
+					return;
+				}
+				currentIndex -= stepSize;
 				if (currentIndex < 0) {
 					currentIndex = maxStartIndex();
 				}
@@ -377,6 +368,10 @@ const sliderId = `slider-${Math.random().toString(36).slice(2, 10)}`;
 			}
 
 			function pointerDown(event) {
+				const targetElement = event.target instanceof Element ? event.target : null;
+				if (targetElement && targetElement.closest('a, button')) {
+					return;
+				}
 				if (sliderItems.length <= visibleItemsCount) {
 					return;
 				}
@@ -410,27 +405,22 @@ const sliderId = `slider-${Math.random().toString(36).slice(2, 10)}`;
 				dragLatestX = event.clientX;
 				const delta = dragLatestX - dragStartX;
 				sliderTrack.style.transform = `translateX(${baseTransform + delta}px)`;
-				if (event.pointerType === 'touch') {
-					event.preventDefault();
-				}
 			}
 
-			function endPointerDrag(event) {
-				if (!isPointerDragging || (event.pointerId != null && event.pointerId !== dragPointerId)) {
+			function pointerUp(event) {
+				if (!isPointerDragging || event.pointerId !== dragPointerId) {
 					return;
 				}
-				if (typeof sliderTrack.releasePointerCapture === 'function' && dragPointerId != null) {
-					sliderTrack.releasePointerCapture(dragPointerId);
-				}
-				sliderTrack.style.cursor = '';
-				sliderTrack.style.transition = '';
-				const delta = dragLatestX - dragStartX;
 				isPointerDragging = false;
-				dragPointerId = null;
-				const { width } = getItemMetrics();
-				const threshold = Math.max(DRAG_MIN_THRESHOLD, width * 0.12);
-				if (Math.abs(delta) > threshold && sliderItems.length > visibleItemsCount) {
-					if (delta < 0) {
+				if (typeof sliderTrack.releasePointerCapture === 'function') {
+					sliderTrack.releasePointerCapture(event.pointerId);
+				}
+				sliderTrack.style.transition = '';
+				sliderTrack.style.cursor = 'grab';
+
+				const diff = dragLatestX - dragStartX;
+				if (Math.abs(diff) > DRAG_MIN_THRESHOLD) {
+					if (diff < 0) {
 						nextSlide();
 					} else {
 						prevSlide();
@@ -438,48 +428,62 @@ const sliderId = `slider-${Math.random().toString(36).slice(2, 10)}`;
 				} else {
 					applyTransform();
 				}
+
 				restartAutoplay();
 			}
 
-			sliderTrack.addEventListener('pointerdown', pointerDown, { passive: false });
-			sliderTrack.addEventListener('pointermove', pointerMove, { passive: false });
-			sliderTrack.addEventListener('pointerup', endPointerDrag);
-			sliderTrack.addEventListener('pointercancel', endPointerDrag);
-			sliderTrack.addEventListener('pointerleave', endPointerDrag);
+			function onResize() {
+				if (resizeTimeout) {
+					window.cancelAnimationFrame(resizeTimeout);
+				}
+				resizeTimeout = window.requestAnimationFrame(recalc);
+			}
 
 			recalc();
-			applyTransform(true);
 
-			if (nextBtn) {
-				nextBtn.addEventListener('click', () => {
-					restartAutoplay();
-					nextSlide();
-				});
-			}
-
-			if (prevBtn) {
-				prevBtn.addEventListener('click', () => {
-					restartAutoplay();
-					prevSlide();
-				});
-			}
-
-			window.addEventListener('resize', () => {
-				window.clearTimeout(resizeTimeout);
-				resizeTimeout = window.setTimeout(recalc, 150);
+			prevBtn?.addEventListener('click', () => {
+				restartAutoplay();
+				prevSlide();
+			});
+			nextBtn?.addEventListener('click', () => {
+				restartAutoplay();
+				nextSlide();
 			});
 
-			restartAutoplay();
+			sliderTrack.addEventListener('pointerdown', pointerDown);
+			window.addEventListener('pointermove', pointerMove);
+			window.addEventListener('pointerup', pointerUp);
+			window.addEventListener('pointercancel', pointerUp);
+			window.addEventListener('resize', onResize);
+
+			root.addEventListener('mouseenter', () => {
+				if (autoInterval) {
+					window.clearInterval(autoInterval);
+				}
+			});
+			root.addEventListener('mouseleave', () => {
+				restartAutoplay();
+			});
+
+			root.addEventListener('keyup', (event) => {
+				if (event.key === 'ArrowLeft') {
+					prevSlide();
+				}
+				if (event.key === 'ArrowRight') {
+					nextSlide();
+				}
+			});
 		};
 
-		const setupAll = () => {
-			document.querySelectorAll('[data-slider-root]').forEach((root) => initSlider(root));
+		const setup = () => {
+			const sliderRoots = document.querySelectorAll('[data-slider-root]');
+			sliderRoots.forEach((root) => initSlider(root));
 		};
 
 		if (document.readyState === 'loading') {
-			document.addEventListener('DOMContentLoaded', setupAll, { once: true });
+			document.addEventListener('DOMContentLoaded', setup, { once: true });
 		} else {
-			setupAll();
+			setup();
 		}
 	})();
 </script>

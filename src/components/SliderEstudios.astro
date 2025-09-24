@@ -1,9 +1,5 @@
 ---
-interface Studio {
-	image: string;
-	alt: string;
-	title: string;
-}
+import type { Studio } from '../data/studios';
 
 interface Props {
 	studios: Studio[];
@@ -39,9 +35,9 @@ const sliderId = `slider-${Math.random().toString(36).slice(2, 10)}`;
 		</div>
 		<div class="slider-container">
 			<div class="slider-track">
-				{shuffledStudios.map((studio, i) => (
+				{shuffledStudios.map((studio) => (
 					<div class="slider-item">
-						<a href={`/proyecto-${i+1}`} class="slide-link">
+						<a href={studio.url ?? '#'} class="slide-link">
 							<article class="card">
 								<figure><img src={studio.image} alt={studio.alt} /></figure>
 								<div class="title">{studio.title}</div>
