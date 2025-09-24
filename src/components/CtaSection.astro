@@ -1,0 +1,241 @@
+---
+// Props opcionales para personalización
+export interface Props {
+  title?: string;
+  subtitle?: string;
+  buttonText?: string;
+  imageUrl?: string;
+  imageAlt?: string;
+}
+
+const {
+  title = "Diseña el próximo espacio que inspire",
+  subtitle = "Sé uno de los 10 participantes seleccionados para compartir su visión del diseño a través de un proyecto único en la próxima edición de 10 de 10.",
+  buttonText = "QUIERO PARTICIPAR",
+  imageUrl = "/assets/img/dcc26f00a5113905df7ebbdaf2ae3eb5dc0fc000.png",
+  imageAlt = "Diseño inspirador"
+} = Astro.props;
+---
+
+<section class="cta-section px16 py12">
+  <div class="max cta-container">
+    <div class="cta-image">
+      <img src={imageUrl} alt={imageAlt} />
+    </div>
+    <div class="cta-content">
+      <div class="cta-copy">
+        <h3 class="cta-title uppercase">{title}</h3>
+        <p class="section-sub mt24">{subtitle}</p>
+        <a href="/contacto" class="link-stroke mt24" aria-label={buttonText}>
+                  {buttonText}
+                </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Variables CSS del proyecto */
+  :root {
+    --c-white: #ffffff;
+    --c-black: #000000;
+    --c-grey-84: #d5d5d5;
+    --c-grey-46: #767676;
+    --c-grey-34: #575757;
+    --c-grey-16: #2b2c28;
+    --c-grey-100: #939393;
+  }
+
+  /* Estilos base del CTA - Basado en Figma 2400x456px */
+  .cta-section {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(255, 255, 255, 0.00) 28%, #E9E8E4 28%, #E9E8E4 100%);
+    margin: 32px 0;
+    padding-left: 48px;
+    padding-right: 48px;
+  }
+
+  .cta-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 48px;
+    height: 456px;
+    max-width: 2400px;
+    margin: 0 auto;
+  }
+
+  .cta-image {
+      width: 600px;
+      height: 360px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+
+  .cta-image img {
+      width: 360px;
+      height: 360px;
+      object-fit: cover;
+  }
+
+  .cta-content {
+    width: 600px;
+    height: 227px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .cta-copy {
+    width: 100%;
+  }
+
+  .cta-title {
+      font-weight: 700;
+      color: var(--c-black);
+      font-size: 18px;
+      line-height: 1.3;
+      margin: 16px 0 0;
+      text-transform: uppercase;
+  }
+
+  .section-sub {
+    color: var(--c-grey-46);
+    font-size: 18px;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .link-stroke {
+    height: 50px;
+    display: grid;
+    place-items: center;
+    padding: 0 22px;
+    border: 2px solid var(--c-black);
+    background: transparent;
+    color: var(--c-black);
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-grid;
+    max-width: fit-content;
+  }
+
+  .link-stroke:hover {
+      background: var(--c-black);
+      color: var(--c-white);
+  }
+  
+
+  /* Clases utilitarias */
+  .px16 {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .py12 {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+
+  .mt24 {
+    margin-top: 24px;
+  }
+
+  .max {
+    max-width: 1728px;
+    margin: 0 auto;
+  }
+
+  .uppercase {
+    text-transform: uppercase;
+  }
+
+  /* Responsive design */
+  @media (max-width: 1200px) {
+    .cta-container {
+      height: auto;
+      padding: 48px 0;
+      gap: 32px;
+    }
+
+    .cta-image {
+      width: 500px;
+      height: 300px;
+    }
+
+    .cta-image img {
+      width: 300px;
+      height: 300px;
+    }
+
+    .cta-content {
+      width: 500px;
+      height: auto;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .cta-container {
+      flex-direction: column;
+      text-align: center;
+      gap: 24px;
+      padding: 32px 0;
+    }
+
+    .cta-image {
+      width: 100%;
+      height: 250px;
+    }
+
+    .cta-image img {
+      width: 250px;
+      height: 250px;
+    }
+
+    .cta-content {
+      width: 100%;
+      height: auto;
+    }
+
+    .cta-title {
+      font-size: 16px;
+    }
+
+    .section-sub {
+      font-size: 16px;
+    }
+
+    .link-stroke {
+      width: 100%;
+      max-width: 280px;
+      margin: 24px auto 0;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .cta-container {
+      padding: 24px 0;
+    }
+
+    .cta-image {
+      height: 200px;
+    }
+
+    .cta-image img {
+      width: 200px;
+      height: 200px;
+    }
+  }
+@media (min-width: 1201px) {
+    .cta-section {
+        padding-left: 64px;
+        padding-right: 64px;
+    }
+}
+</style>

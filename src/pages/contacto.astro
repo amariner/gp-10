@@ -1,0 +1,269 @@
+---
+import Header from '../components/Header.astro';
+import CtaSection from '../components/CtaSection.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<html lang="es">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="https://www.porcelanosa.com/PIcon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Contacto — 10 de 10</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet" />
+		<style>
+			:root{--c-white:#ffffff;--c-black:#000000;--c-grey-84:#d5d5d5;--c-grey-46:#767676;--c-grey-100:#939393}
+			*{box-sizing:border-box}
+			html,body{margin:0;padding:0}
+			body{font-family:Lato,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,"Helvetica Neue",Arial,"Apple Color Emoji","Segoe UI Emoji";color:#000;background:#fff}
+			.max{max-width:1728px;margin:0 auto}
+			.container{max-width:1600px;margin:0 auto}
+			.px16{padding-left:16px;padding-right:16px}
+			.px20{padding-left:20px;padding-right:20px}
+			.py12{padding-top:48px;padding-bottom:48px}
+			.py16{padding-top:64px;padding-bottom:64px}
+			.py5{padding-top:20px;padding-bottom:20px}
+			.py0{padding-top:0;padding-bottom:0}
+			.mt24{margin-top:24px}
+			.mb0{margin-bottom:0}
+			.center{text-align:center}
+			.uppercase{text-transform:uppercase}
+			.grid{display:grid;gap:24px}
+			.grid-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+			.row{display:flex;gap:24px}
+			.between{display:flex;justify-content:space-between;align-items:center}
+			header.site-header{position:sticky;top:0;height:86px;display:flex;align-items:center;justify-content:center;z-index:10;background:#fff}
+			header.site-header .bar{height:86px;border-bottom:1px solid var(--c-grey-84);display:flex;align-items:center;justify-content:center}
+			header .logo{font-family:"Porcelanosa",serif;font-weight:400;font-size:32px;line-height:64px;letter-spacing:.02em;color:#000}
+			.section-title{font-weight:700;color:#000;font-size:24px;line-height:30px}
+			.section-sub{color:var(--c-grey-46);font-size:18px;line-height:1.5}
+			.cta-block{display:flex;gap:48px;align-items:flex-end;justify-content:center}
+			.cta-block .image{width:600px;max-width:100%;aspect-ratio:663/548;background-size:cover;background-position:center}
+			.cta-block .copy{width:600px;max-width:100%}
+			.social{display:flex;gap:16px}
+			.social .dot{height:32px;width:32px;border-radius:16px;background:#000;display:grid;place-items:center}
+			.form-container{display:flex;gap:48px;align-items:flex-start;justify-content:center;max-width:1600px;margin:0 auto}
+			.form-fields{display:flex;flex-wrap:wrap;gap:24px;flex:1;min-width:600px}
+			.form-field{flex:1;min-width:300px;max-width:435px}
+			.form-field.full{flex:1 1 100%;max-width:870px;min-width:600px}
+			.form-label{font-weight:700;font-size:15px;line-height:15px;color:#000;margin-bottom:6.5px}
+			.form-input{width:100%;padding:14px 11.4px;border:1px solid var(--c-grey-100);font-size:13px;font-family:inherit;background:#fff}
+			.form-input::placeholder{color:var(--c-grey-100)}
+			.form-textarea{width:100%;min-height:100px;padding:14px 11.4px;border:1px solid var(--c-grey-100);font-size:13px;font-family:inherit;background:#fff;resize:vertical}
+			.form-textarea::placeholder{color:var(--c-grey-100)}
+			.form-select{width:100%;padding:14px 11.4px;border:1px solid var(--c-grey-100);font-size:13px;font-family:inherit;background:#fff;appearance:none;background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");background-position:right 15px center;background-repeat:no-repeat;background-size:16px}
+			.form-sidebar{flex:1;max-width:871.5px;padding-top:40px}
+			.checkbox{display:flex;align-items:flex-start;gap:8px;margin-bottom:16px}
+			.checkbox input[type="checkbox"]{width:15px;height:15px;border:1px solid var(--c-grey-100);margin-top:2px}
+			.checkbox label{font-size:12.2px;line-height:16.25px;font-weight:700;color:#000}
+			.btn-submit{background:#000;color:#fff;border:none;padding:0 22px;height:50px;font-weight:700;font-size:14px;text-transform:uppercase;cursor:pointer;width:100%}
+			.legal-text{font-size:11px;line-height:14.66px;color:var(--c-grey-100);text-align:justify;margin-bottom:16px}
+			.legal-text a{color:var(--c-grey-100);text-decoration:underline}
+			.stores-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(3,1fr);gap:48px;height:717px;max-width:1600px;margin:0 auto;padding:48px 0}
+			.store-card{max-height:180px}
+			.store-card .name{font-weight:700;color:var(--c-grey-100);font-size:18px;line-height:23.99px;margin-bottom:0}
+			.store-card .address{color:var(--c-grey-100);font-size:18px;line-height:23.99px;margin-bottom:0}
+			.store-card .phone{color:var(--c-grey-100);font-size:18px;line-height:23.99px;margin-bottom:0}
+			footer.site-footer{border-top:1px solid var(--c-grey-84)}
+			.footer-top{border-bottom:1px solid var(--c-grey-84)}
+			.footer-menu{display:flex;gap:16px}
+			.footer-menu a{font-weight:700;font-size:16px;line-height:26px;color:#767676;text-decoration:none;text-transform:uppercase}
+			.footer-social{display:flex;gap:12px}
+			.footer-social .dot{height:32px;width:32px;border-radius:16px;background:#000;display:grid;place-items:center}
+			.copyright{color:var(--c-grey-100);font-size:12.8px}
+			.brandmark{height:140px;width:190px;margin:0 auto}
+			/* Simple responsive adjustments */
+			@media (max-width: 1200px){
+				.grid-4{grid-template-columns:repeat(2,minmax(0,1fr))}
+				.cta-block{flex-direction:column;align-items:center}
+				.form-container{flex-direction:column}
+				.form-fields{min-width:auto}
+				.stores-grid{height:auto;grid-template-rows:auto}
+			}
+			@media (max-width: 680px){
+				.grid-4{grid-template-columns:1fr}
+				.form-field{min-width:auto;max-width:none}
+				.form-field.full{min-width:auto}
+			}
+		</style>
+			<link rel="stylesheet" href="/assets/css/brand.css" />
+	</head>
+	<body>
+		<Header />
+
+		<main>
+		<Footer/>
+
+			<section class="px16 py12">
+				<div class="form-container">
+					<form class="form-fields">
+						<div class="form-field">
+							<label class="form-label">Nombre*</label>
+							<input type="text" class="form-input" placeholder="Escribe tu nombre" required />
+						</div>
+						<div class="form-field">
+							<label class="form-label">Apellidos*</label>
+							<input type="text" class="form-input" placeholder="Escribe tus apellidos" required />
+						</div>
+						<div class="form-field">
+							<label class="form-label">Dirección email*</label>
+							<input type="email" class="form-input" placeholder="Escribe tu dirección de email" required />
+						</div>
+						<div class="form-field">
+							<label class="form-label">Ciudad*</label>
+							<input type="text" class="form-input" placeholder="Escribe tu ciudad" required />
+						</div>
+						<div class="form-field">
+							<label class="form-label">País*</label>
+							<select class="form-select" required>
+								<option value="MX">México</option>
+								<option value="US">Estados Unidos</option>
+								<option value="CA">Canadá</option>
+								<option value="ES">España</option>
+							</select>
+						</div>
+						<div class="form-field">
+							<label class="form-label">Perfil de usuario*</label>
+							<select class="form-select" required>
+								<option value="">Profesional / Particular / Estudiante</option>
+								<option value="profesional">Profesional</option>
+								<option value="particular">Particular</option>
+								<option value="estudiante">Estudiante</option>
+							</select>
+						</div>
+						<div class="form-field">
+							<label class="form-label">Área de actividad*</label>
+							<select class="form-select" required>
+								<option value="">Arq./Interior./Constr./Prom.inmob./Dis./Comunic./Otros</option>
+								<option value="arquitectura">Arquitectura</option>
+								<option value="interiorismo">Interiorismo</option>
+								<option value="construccion">Construcción</option>
+								<option value="promocion">Promoción inmobiliaria</option>
+								<option value="diseno">Diseño</option>
+								<option value="comunicacion">Comunicación</option>
+								<option value="otros">Otros</option>
+							</select>
+						</div>
+						<div class="form-field full">
+							<label class="form-label">Comentario</label>
+							<textarea class="form-textarea" placeholder="Escribe tu consulta. En breve nos pondremos en contacto contigo."></textarea>
+						</div>
+					</form>
+					<div class="form-sidebar">
+						<p class="legal-text">(*) Datos obligatorios</p>
+						<div class="legal-text">
+							De conformidad con lo establecido en la normativa vigente en Protección de Datos de Carácter Personal, le informamos que los datos de carácter personal que nos ha proporcionado serán incorporados a un fichero cuyo responsable es PORCELANOSA Grupo A.I.E. (C.I.F. V-12465118 y domicilio social en Carretera Nacional 340, km 55,8 de 12540 Vila-real (Castellón, España) con la finalidad de tramitar su solicitud de suscripción y poder remitirle periódicamente información de su interés, manteniéndole informado mediante comunicaciones comerciales electrónicas sobre nuestros productos y servicios. Sus datos personales podrán cederse a las empresas del Grupo PORCELANOSA pertenecientes al sector de la fabricación y venta de materiales destinados a la construcción, decoración y complementos (relacionadas en <a href="https://www.porcelanosa.com/porcelanosa-grupo/">www.porcelanosa.com/porcelanosa-grupo/</a> y en <a href="https://www.porcelanosa.com/buscador-de-tiendas/">www.porcelanosa.com/buscador-de-tiendas/</a>) con la misma finalidad pero sólo si lo autoriza mediante la siguiente casilla.
+						</div>
+						<div class="checkbox">
+							<input type="checkbox" id="publicidad" />
+							<label for="publicidad">Deseo recibir publicidad</label>
+						</div>
+						<div class="checkbox">
+							<input type="checkbox" id="acepto" required />
+							<label for="acepto">Al seleccionar esta casilla reconoce que ha leído y acepta las condiciones de uso y la política de proteción de datos personales de PORCELANOSA Grupo.</label>
+						</div>
+						<button type="submit" class="btn-submit">ENVIAR DATOS</button>
+						<div class="legal-text">
+							La legitimación se deriva de la existencia de una relación contractual, interés legítimo y consentimiento, según cada finalidad y posible cesión. De acuerdo con los derechos que le confiere la normativa vigente en protección de datos podrá ejercer los derechos de Acceso, Rectificación, Portabilidad, Limitación de tratamiento, Supresión o, en su caso, Oposición conforme se explica en la información adicional. Información adicional: puede consultar la información adicional y detallada sobre Protección de Datos en nuestra página web <a href="https://www.porcelanosa.com/legal/">www.porcelanosa.com/legal/</a>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="px16 py12">
+				<div class="stores-grid">
+					<div class="store-card">
+						<p class="name">PORCELANOSA MÉXICO - SHOWROOM</p>
+						<p class="name">GUADALAJARA</p>
+						<p class="address">Niños Héroes 2316, Col. Barrera</p>
+						<p class="address">44150 Guadalajara</p>
+						<p class="address">Guadalajara</p>
+						<p class="phone">Tlf. (33) 36153255</p>
+					</div>
+					<div class="store-card">
+						<p class="name">PORCELANOSA MÉXICO - SHOWROOM</p>
+						<p class="name">VALLE DORADO</p>
+						<p class="address">Autopista México-Querétaro No.3002, Col.</p>
+						<p class="address">San Andrés Atenco, Tlanepantia de Baz</p>
+						<p class="address">54040 Valle Dorado</p>
+						<p class="address">Valle Dorado</p>
+						<p class="phone">Tlf. (55)58317340</p>
+					</div>
+					<div class="store-card">
+						<p class="name">PORCELANOSA MÉXICO - SHOWROOM</p>
+						<p class="name">INTERLOMAS</p>
+						<p class="address">Avda. Parque de la Granada 35, Local A</p>
+						<p class="address">Col. Parques de la Herradura</p>
+						<p class="address">52786 Huixquilucan</p>
+						<p class="address">Huixquilucan</p>
+						<p class="phone">Tlf.+(55) 3605 0064</p>
+					</div>
+					<div class="store-card">
+						<p class="name">PORCELANOSA MÉXICO - SHOWROOM</p>
+						<p class="name">MASARYK</p>
+						<p class="address">Presidente Masaryk 410 Col. Polanco</p>
+						<p class="address">11560 Masaryk</p>
+						<p class="address">Masaryk</p>
+						<p class="phone">Tlf. (55) 52 82 20 00</p>
+					</div>
+					<div class="store-card">
+						<p class="name">PORCELANOSA MÉXICO - SHOWROOM</p>
+						<p class="name">DIVISIÓN DEL NORTE</p>
+						<p class="address">Av. División del Norte 518, Col del Valle</p>
+						<p class="address">Norte, Delegación Benito Juárez</p>
+						<p class="address">03103 Ciudad de México</p>
+						<p class="address">Ciudad de México</p>
+						<p class="phone">Tlf. (55) 2121 3579</p>
+					</div>
+					<div class="store-card">
+						<p class="name">PORCELANOSA MÉXICO - SHOWROOM</p>
+						<p class="name">ALTAVISTA</p>
+						<p class="address">Altavista No.9 Col. San Ángel</p>
+						<p class="address">01000 Altavista</p>
+						<p class="address">Altavista</p>
+						<p class="phone">Tlf. (55) 5550 7060</p>
+					</div>
+					<div class="store-card">
+						<p class="name">PORCELANOSA MÉXICO - SHOWROOM</p>
+						<p class="name">ARTZ PEDREGAL</p>
+						<p class="address">Perif. Sur 3720, Jardines del Pedregal,</p>
+						<p class="address">Álvaro Obregón</p>
+						<p class="address">1900 Ciudad de México, CDMX</p>
+						<p class="address">Ciudad de México, CDMX</p>
+						<p class="phone">Tlf. (55)52068233</p>
+					</div>
+					<div class="store-card">
+						<p class="name">PORCELANOSA MÉXICO - SHOWROOM</p>
+						<p class="name">PUEBLA</p>
+						<p class="address">Via Atlixcáyotl # 1499</p>
+						<p class="address">Reserva territorial Atlixcáyotl</p>
+						<p class="phone">Tlf. +52 222 6227660</p>
+					</div>
+					<div class="store-card">
+						<p class="name">PORCELANOSA MÉXICO - SHOWROOM</p>
+						<p class="name">CANCÚN - PRÓXIMAMENTE</p>
+						<p class="address">Av. Bonampak, SM 3, M 12, Lote 66, No</p>
+						<p class="address">14/.</p>
+						<p class="address">77500 Zona Hotelera, Benito Juárez,</p>
+						<p class="address">Cancún</p>
+						<p class="address">Zona Hotelera, Benito Juárez, Cancún</p>
+						<p class="phone">Tlf. +52 99 8813 2343</p>
+					</div>
+					<div class="store-card">
+						<p class="name">PORCELANOSA MÉXICO - SHOWROOM</p>
+						<p class="name">PLAYA DEL CARMEN</p>
+						<p class="address">Av. Balamcanché, Mz. 30 Lt2</p>
+						<p class="address">77717 Playa del Carmen</p>
+						<p class="address">Playa del Carmen</p>
+						<p class="phone">Tlf. 998 313 23 43</p>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<Footer/>
+	</body>
+</html>

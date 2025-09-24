@@ -1,0 +1,215 @@
+---
+import Header from '../components/Header.astro';
+import SliderProyectos from '../components/SliderProyectos.astro';
+import CtaSection from '../components/CtaSection.astro';
+import Footer from '../components/Footer.astro';
+
+const projects = [
+	{
+		image: '/assets/img/proyectos/1.jpg',
+		alt: 'Proyecto 1',
+		category: 'Estudio 1',
+		detail: 'Minimalista | 2024',
+		title: 'Proyecto 1'
+	},
+	{
+		image: '/assets/img/proyectos/2.jpg',
+		alt: 'Proyecto 2',
+		category: 'Estudio 2',
+		detail: 'Minimalista | 2024',
+		title: 'Proyecto 2'
+	},
+	{
+		image: '/assets/img/proyectos/3.jpg',
+		alt: 'Proyecto 3',
+		category: 'Estudio 3',
+		detail: 'Minimalista | 2024',
+		title: 'Proyecto 3'
+	},
+	{
+		image: '/assets/img/proyectos/4.jpg',
+		alt: 'Proyecto 4',
+		category: 'Estudio 4',
+		detail: 'Minimalista | 2024',
+		title: 'Proyecto 4'
+	},
+	{
+		image: '/assets/img/proyectos/5.jpg',
+		alt: 'Proyecto 5',
+		category: 'Estudio 5',
+		detail: 'Minimalista | 2024',
+		title: 'Proyecto 5'
+	},
+	{
+		image: '/assets/img/proyectos/6.jpg',
+		alt: 'Proyecto 6',
+		category: 'Estudio 6',
+		detail: 'Minimalista | 2024',
+		title: 'Proyecto 6'
+	},
+	{
+		image: '/assets/img/proyectos/7.jpg',
+		alt: 'Proyecto 7',
+		category: 'Estudio 7',
+		detail: 'Minimalista | 2024',
+		title: 'Proyecto 7'
+	},
+	{
+		image: '/assets/img/proyectos/8.jpg',
+		alt: 'Proyecto 8',
+		category: 'Estudio 8',
+		detail: 'Minimalista | 2024',
+		title: 'Proyecto 8'
+	},
+	{
+		image: '/assets/img/proyectos/9.jpg',
+		alt: 'Proyecto 9',
+		category: 'Estudio 9',
+		detail: 'Minimalista | 2024',
+		title: 'Proyecto 9'
+	},
+	{
+		image: '/assets/img/proyectos/10.jpg',
+		alt: 'Proyecto 10',
+		category: 'Estudio 10',
+		detail: 'Minimalista | 2024',
+		title: 'Proyecto 10'
+	}
+];
+---
+
+<html lang="es">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="https://www.porcelanosa.com/PIcon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content={Astro.generator} />
+		<title>¿Qué es 10 de 10? — 10 de 10</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet" />
+		<style>
+			:root{--c-white:#ffffff;--c-black:#000000;--c-grey-84:#d5d5d5;--c-grey-46:#767676;--c-grey-34:#575757;--c-grey-16:#2b2c28;--c-grey-100:#939393}
+			*{box-sizing:border-box}
+			html,body{margin:0;padding:0}
+			body{font-family:Lato,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,"Helvetica Neue",Arial,"Apple Color Emoji","Segoe UI Emoji";color:#000;background:#fff}
+			.max{max-width:1728px;margin:0 auto}
+			.container{max-width:1600px;margin:0 auto}
+			.px16{padding-left:16px;padding-right:16px}
+			.px20{padding-left:20px;padding-right:20px}
+			.py12{padding-top:48px;padding-bottom:48px}
+			.py16{padding-top:64px;padding-bottom:64px}
+			.py5{padding-top:20px;padding-bottom:20px}
+			.py0{padding-top:0;padding-bottom:0}
+			.mt24{margin-top:24px}
+			.mb0{margin-bottom:0}
+			.center{text-align:center}
+			.uppercase{text-transform:uppercase}
+			.grid{display:grid;gap:24px}
+			.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+			.grid-5{grid-template-columns:repeat(5,minmax(0,1fr))}
+			.row{display:flex;gap:24px}
+			.between{display:flex;justify-content:space-between;align-items:center}
+			header.site-header{position:sticky;top:0;height:86px;display:flex;align-items:center;justify-content:center;z-index:10;background:#fff}
+			header.site-header .bar{height:86px;border-bottom:1px solid var(--c-grey-84);display:flex;align-items:center;justify-content:center}
+			header .logo{font-family:"Porcelanosa",serif;font-weight:400;font-size:32px;line-height:64px;letter-spacing:.02em;color:#000}
+			.section-title{font-weight:700;color:var(--c-grey-16);font-size:30px}
+			.section-sub{color:var(--c-grey-46);font-size:18px;line-height:1.5}
+			.card figure{aspect-ratio:16/11;background:#eee;overflow:hidden;margin:0}
+			.card figure img{width:100%;height:100%;object-fit:cover;display:block}
+			.card .meta{display:flex;gap:8px;color:var(--c-grey-46);font-size:14px}
+			.card .title{font-weight:700;color:#000;text-transform:uppercase;font-size:18px}
+			.cta-block{display:flex;gap:48px;align-items:flex-end;justify-content:center}
+			.cta-block .image{width:600px;max-width:100%;aspect-ratio:1/1;background-size:cover;background-position:center}
+			.cta-block .copy{width:600px;max-width:100%}
+			.link-stroke{height:50px;display:grid;place-items:center;padding:0 22px;border:2px solid #000}
+			footer.site-footer{border-top:1px solid var(--c-grey-84)}
+			.footer-top{border-bottom:1px solid var(--c-grey-84)}
+			.footer-menu{display:flex;gap:16px}
+			.footer-menu a{font-weight:700;font-size:16px;line-height:26px;color:#767676;text-decoration:none;text-transform:uppercase}
+			.social{display:flex;gap:12px}
+			.social .dot{height:32px;width:32px;border-radius:16px;background:#000;display:grid;place-items:center}
+			.copyright{color:var(--c-grey-100);font-size:12.8px}
+			.brandmark{height:140px;width:190px;margin:0 auto}
+			.underline{position:relative;display:inline-block}
+			.underline:after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:#000}
+			.about-content{display:flex;gap:48px;align-items:stretch;max-width:1200px;margin:0 auto}
+			.about-text{flex:1;color:var(--c-grey-46);font-size:18px;line-height:1.5;text-align:justify}
+			.about-text p{margin-bottom:1.5em}
+			.about-text p:last-child{margin-bottom:0}
+			.about-video{flex:1;display:flex;align-items:stretch;overflow:hidden}
+			.about-video-mask{flex:1;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+			.about-video video{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+			.image-grid{display:grid;grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(2,1fr);gap:24px;height:824px;max-width:1400px;margin:0 auto}
+			.image-grid .grid-item{background-size:cover;background-position:center;background-repeat:no-repeat}
+			/* Simple responsive adjustments */
+			@media (max-width: 1200px){
+				.grid-5{grid-template-columns:repeat(2,minmax(0,1fr))}
+				.cta-block{flex-direction:column;align-items:center}
+				.about-content{flex-direction:column}
+				.about-video-mask{height:auto}
+				.about-video video{height:auto;width:100%}
+				.image-grid{height:600px}
+			}
+			@media (max-width: 680px){
+				.grid-5{grid-template-columns:1fr}
+				.image-grid{height:400px;grid-template-columns:1fr;grid-template-rows:repeat(4,1fr)}
+			}
+		</style>
+			<link rel="stylesheet" href="/assets/css/brand.css" />
+	</head>
+	<body>
+		<Header />
+
+		<main>
+			<section class="px16 py16">
+				<div class="container center">
+					<h1 class="section-title mb0" style="margin-top:64px;">10 de 10: Diseño que conecta con la materia</h1>
+				</div>
+			</section>
+
+			<section class="px16 py12">
+				<div class="about-content">
+					<div class="about-video">
+					    <div class="about-video-mask">
+					        <video src="/videos/10de10-verstical.mp4" muted autoplay loop playsinline></video>
+					    </div>
+					</div>
+					<div class="about-text">
+						<p>Desde 2021, 10 de 10 se ha consolidado como una de las iniciativas más representativas de PORCELANOSA México para impulsar el diseño contemporáneo en el país. Cada año, diez despachos de arquitectura e interiorismo son invitados a participar en un ejercicio creativo que trasciende lo conceptual para convertirse en experiencia habitable.</p>
+						
+						<p>El reto: desarrollar un espacio único, definido por una categoría —como cocina, lobby, boutique u oficina— y reinterpretarlo desde una visión personal, innovadora y emocional. El resultado es una colección de propuestas que exploran la luz, la textura, el color y el volumen con absoluta libertad creativa, manteniendo siempre un diálogo coherente con la funcionalidad y el entorno.</p>
+						
+						<p>En cada edición, el diseño se convierte en narrativa: se cuenta una historia a través de la materia. Las atmósferas creadas por los estudios participantes reflejan no solo talento técnico y sensibilidad estética, sino también un entendimiento profundo de cómo habitamos, sentimos y percibimos los espacios.</p>
+						
+						<p>10 de 10 no es solo una exposición de ideas; es una comunidad de pensamiento en torno a la arquitectura, el diseño y el uso consciente de los materiales. Los proyectos presentados se exhiben públicamente, se documentan en medios editoriales y se convierten en referentes para la industria.</p>
+						
+						<p>En esta página, puedes ver un breve resumen en video de lo que ha significado este proyecto a lo largo de sus ediciones. Y más abajo, explorar a fondo los espacios creados en la edición más reciente.</p>
+					</div>
+					
+				</div>
+			</section>
+
+			<section class="px16 py12">
+				<div class="image-grid">
+					<div class="grid-item" style={`background-image:url('assets/img/961d1eafe8534cf9f833c57cbc3755138b908256.png')`}></div>
+					<div class="grid-item" style={`background-image:url('assets/img/15b38e104a2bc4efad4b2b53002f09acf05bcf75.png')`}></div>
+					<div class="grid-item" style={`background-image:url('assets/img/54286195900fc3ee181efc3295dff4155d9678f2.png')`}></div>
+					<div class="grid-item" style={`background-image:url('assets/img/41f91d286827a6d099de64a656c5dfa862d10f05.png')`}></div>
+				</div>
+			</section>
+
+			<section class="px16 py12">
+				<div class="container center">
+					<h2 class="section-title">Explora los espacios de la última edición y conoce cómo se materializó el diseño a través de diez visiones únicas.</h2>
+				</div>
+			</section>
+
+			<SliderProyectos projects={projects} linkHref="/proyectos" linkLabel="VER TODOS LOS PROYECTOS" />
+
+		<CtaSection/>
+		</main>
+
+		<Footer/>
+	</body>
+</html>

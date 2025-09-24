@@ -1,0 +1,221 @@
+---
+import SideMenu from './SideMenu.astro';
+---
+
+<header class="site-header">
+	<div class="header-container">
+		<button class="menu-button" aria-label="Abrir menú">
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="menu-icon">
+				<path d="M3 18V16H21V18H3ZM3 13V11H21V13H3ZM3 8V6H21V8H3Z"/>
+			</svg>
+		</button>
+		<a class="logo" href="/">PORCELANOSA</a>
+	</div>
+</header>
+
+<SideMenu />
+
+<style>
+	@font-face {
+		font-family: 'Porcelanosa';
+		src: url('/assets/fonts/Porcelanosa-Regular.otf') format('opentype');
+		font-weight: 400;
+		font-style: normal;
+		font-display: swap;
+	}
+
+	.site-header {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		height: 86px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		z-index: 1000;
+		background: transparent;
+		border-bottom: 1px solid rgba(255,255,255,.4);
+	}
+
+	.header-container {
+		max-width: 1728px;
+		width: 100%;
+		height: 86px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 0 20px;
+		position: relative;
+	}
+
+	.menu-button {
+		background: none;
+		border: none;
+		cursor: pointer;
+		padding: 8px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: opacity 0.2s ease;
+	}
+
+	.menu-button:hover {
+		opacity: 0.7;
+	}
+
+	.menu-button svg {
+		display: block;
+	}
+
+	.logo {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		font-family: 'Porcelanosa', serif;
+		font-weight: 400;
+		font-size: 32px;
+		line-height: 1;
+		letter-spacing: 0.02em;
+		text-decoration: none;
+	}
+
+	/* Responsive adjustments */
+	@media (max-width: 768px) {
+		.logo {
+			font-size: 28px;
+		}
+		
+		.header-container {
+			padding: 0 16px;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.logo {
+			font-size: 24px;
+		}
+	}
+</style>
+
+<style>
+	/* Header themes */
+	.site-header.theme-light {
+		background:#fff;
+		border-bottom:1px solid #d5d5d5;
+		color:#000;
+	}
+	.site-header.theme-light .logo { color:#000; }
+	.site-header.theme-light .menu-icon { fill:#000; }
+
+	.site-header.theme-dark {
+		border-bottom:1px solid rgba(255,255,255,.4);
+		color:#fff;
+	}
+	.site-header.theme-dark .logo { color:#fff; }
+	.site-header.theme-dark .menu-icon { fill:#fff; }
+</style>
+
+<style>
+/* Hide/Show header animations */
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-100%); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeOutUp {
+  from { opacity: 1; transform: translateY(0); }
+  to   { opacity: 0; transform: translateY(-100%); }
+}
+.site-header.header--visible {
+  animation: fadeInDown 0.3s ease forwards;
+  transform: translateY(0) !important;
+}
+.site-header.header--hidden {
+  animation: fadeOutUp 0.3s ease forwards;
+  transform: translateY(-100%) !important;
+}
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const header = document.querySelector('.site-header') as HTMLElement;
+    if (!header) return;
++   header.classList.add('header--visible');
+    function applyTheme(isLight: boolean) {
+      header!.classList.toggle('theme-light', !!isLight);
+      header!.classList.toggle('theme-dark', !isLight);
+    }
+    const hero = document.querySelector('.hero') as HTMLElement;
+    if (hero) {
+      // Home: start dark (white logo/menu on transparent), switch to light after hero
+      function updateTheme() {
+        const heroRect = hero!.getBoundingClientRect();
+        const pastHero = window.scrollY >= heroRect.height;
+        applyTheme(pastHero);
+      }
+      applyTheme(false);
+      updateTheme();
+      window.addEventListener('scroll', updateTheme, { passive: true });
+      window.addEventListener('resize', updateTheme);
+
+            // Hide/show header on scroll direction and switch to fixed after hero
+            const heroHeight = hero!.getBoundingClientRect().height;
+            let lastScrollY = window.scrollY;
+            window.addEventListener('scroll', () => {
+              const currentY = window.scrollY;
+              if (currentY <= heroHeight) {
+                header!.classList.remove('header--hidden');
+                header!.classList.add('header--visible');
+                header!.style.position = 'absolute';
+              } else if (currentY > lastScrollY) {
+                header!.classList.remove('header--visible');
+                header!.classList.add('header--hidden');
+                header!.style.position = 'fixed';
+              } else {
+                header!.classList.remove('header--hidden');
+                header!.classList.add('header--visible');
+                header!.style.position = 'fixed';
+              }
+              lastScrollY = currentY;
+            }, { passive: true });
+        
+            // Universal hide/show header on scroll for all pages
+            let lastScrollYAll = window.scrollY;
+            window.addEventListener('scroll', () => {
+              const currentY = window.scrollY;
+              if (currentY > lastScrollYAll) {
+                header.classList.remove('header--visible');
+                header.classList.add('header--hidden');
+              } else {
+                header.classList.remove('header--hidden');
+                header.classList.add('header--visible');
+              }
+              lastScrollYAll = currentY;
+            }, { passive: true });
+    } else {
+      // Other pages: light theme and enable hide/show header on scroll
+      applyTheme(true);
+      header.classList.add('header--visible');
+      header.style.position = 'fixed';
+      let lastScrollY = window.scrollY;
+      window.addEventListener('scroll', () => {
+        const currentY = window.scrollY;
+        if (currentY <= 0) {
+          header.classList.remove('header--hidden');
+          header.classList.add('header--visible');
+          header.style.position = 'absolute';
+        } else if (currentY > lastScrollY) {
+          header.classList.remove('header--visible');
+          header.classList.add('header--hidden');
+          header.style.position = 'fixed';
+        } else {
+          header.classList.remove('header--hidden');
+          header.classList.add('header--visible');
+          header.style.position = 'fixed';
+        }
+        lastScrollY = currentY;
+      }, { passive: true });
+    }
+  });
+</script>

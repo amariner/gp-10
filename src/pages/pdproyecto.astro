@@ -1,0 +1,296 @@
+---
+import Header from '../components/Header.astro';
+import CtaSection from '../components/CtaSection.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<html lang="es">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="https://www.porcelanosa.com/PIcon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Proyecto Armonía Orgánica — 10 de 10</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet" />
+		<style>
+			:root{--c-white:#ffffff;--c-black:#000000;--c-grey-84:#d5d5d5;--c-grey-46:#767676;--c-grey-34:#575757;--c-grey-16:#2b2c28;--c-grey-100:#939393;--c-azure-18:#1c3241}
+			*{box-sizing:border-box}
+			html,body{margin:0;padding:0}
+			body{font-family:Lato,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,"Helvetica Neue",Arial,"Apple Color Emoji","Segoe UI Emoji";color:#000;background:#fff}
+			.max{max-width:1728px;margin:0 auto}
+			.container{max-width:1600px;margin:0 auto}
+			.px16{padding-left:16px;padding-right:16px}
+			.px20{padding-left:20px;padding-right:20px}
+			.py12{padding-top:48px;padding-bottom:48px}
+			.py16{padding-top:64px;padding-bottom:64px}
+			.py5{padding-top:20px;padding-bottom:20px}
+			.py0{padding-top:0;padding-bottom:0}
+			.mt24{margin-top:24px}
+			.mb0{margin-bottom:0}
+			.center{text-align:center}
+			.uppercase{text-transform:uppercase}
+			.grid{display:grid;gap:24px}
+			.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+			.grid-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+			.row{display:flex;gap:24px}
+			.between{display:flex;justify-content:space-between;align-items:center}
+			header.site-header{position:sticky;top:0;height:86px;display:flex;align-items:center;justify-content:center;z-index:10;background:#fff}
+			header.site-header .bar{height:86px;border-bottom:1px solid var(--c-grey-84);display:flex;align-items:center;justify-content:center}
+			header .logo{font-family:"Porcelanosa",serif;font-weight:400;font-size:32px;line-height:64px;letter-spacing:.02em;color:#000}
+			.section-title{font-weight:700;color:#000;font-size:24px;line-height:30px}
+			.section-sub{color:var(--c-grey-46);font-size:18px;line-height:1.5}
+			.card figure{aspect-ratio:16/11;background:#eee;overflow:hidden;margin:0}
+			.card figure img{width:100%;height:100%;object-fit:cover;display:block}
+			.card .meta{display:flex;gap:8px;color:var(--c-grey-46);font-size:14px}
+			.card .title{font-weight:700;color:#000;text-transform:uppercase;font-size:18px}
+			.cta-block{display:flex;gap:48px;align-items:flex-end;justify-content:center}
+			.cta-block .image{width:600px;max-width:100%;aspect-ratio:1/1;background-size:cover;background-position:center}
+			.cta-block .copy{width:600px;max-width:100%}
+			.link-stroke{height:50px;display:grid;place-items:center;padding:0 22px;border:2px solid #000}
+			footer.site-footer{border-top:1px solid var(--c-grey-84)}
+			.footer-top{border-bottom:1px solid var(--c-grey-84)}
+			.footer-menu{display:flex;gap:16px}
+			.footer-menu a{font-weight:700;font-size:16px;line-height:26px;color:#767676;text-decoration:none;text-transform:uppercase}
+			.social{display:flex;gap:12px}
+			.social .dot{height:32px;width:32px;border-radius:16px;background:#000;display:grid;place-items:center}
+			.copyright{color:var(--c-grey-100);font-size:12.8px}
+			.brandmark{height:140px;width:190px;margin:0 auto}
+			.underline{position:relative;display:inline-block}
+			.underline:after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:#000}
+			.hero-images{display:flex;height:994px}
+			.hero-images .image{flex:1;background-size:cover;background-position:center}
+			.project-header{display:flex;gap:48px;align-items:flex-start;justify-content:center;max-width:1400px;margin:0 auto}
+			.project-logo{flex:1;display:flex;align-items:center;justify-content:center}
+			.project-info{flex:1;max-width:500px}
+			.project-title{font-weight:700;font-size:24px;line-height:30px;color:#000}
+			.project-meta{color:var(--c-grey-46);font-size:14px;border-top:1px solid var(--c-grey-46);padding-top:4px}
+			.project-studio{font-weight:700;font-size:18px;color:var(--c-azure-18)}
+			.project-studio a{color:var(--c-azure-18);text-decoration:underline}
+			.project-architects{font-weight:400;font-size:18px;color:#000}
+			.project-instagram{font-weight:700;font-size:18px;color:#000}
+			.project-quote{font-style:italic;font-size:18px;color:#000;line-height:1.5}
+			.video-section{position:relative;height:994px;background:#000}
+			.video-overlay{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;color:#fff}
+			.video-overlay h2{font-weight:700;font-size:24px;line-height:30px;color:#fff}
+			.project-description{display:flex;gap:48px;align-items:flex-start;justify-content:center;max-width:1400px;margin:0 auto}
+			.project-text{flex:1;color:var(--c-grey-46);font-size:18px;line-height:1.5;text-align:justify}
+			.project-text p{margin-bottom:1.5em}
+			.project-text p:last-child{margin-bottom:0}
+			.project-image{flex:1;min-height:400px;background-size:cover;background-position:center}
+			.image-grid{display:grid;grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(2,1fr);gap:24px;height:900px;max-width:1400px;margin:0 auto}
+			.image-grid .grid-item{background-size:cover;background-position:center;background-repeat:no-repeat}
+			.full-image{height:994px;background-size:cover;background-position:center}
+			.products-section{max-width:1400px;margin:0 auto}
+			.products-header{border-bottom:1px solid #000;padding-bottom:8px;margin-bottom:24px}
+			.products-title{font-weight:700;font-size:18px;text-transform:uppercase}
+			.products-grid{display:flex;flex-wrap:wrap;gap:24px}
+			.product-card{flex:0 0 213px;display:flex;flex-direction:column;gap:8px}
+			.product-card figure{aspect-ratio:1/1;background:#eee;overflow:hidden;margin:0}
+			.product-card figure img{width:100%;height:100%;object-fit:cover;display:block}
+			.product-card .name{color:var(--c-grey-46);font-size:14px;text-transform:uppercase}
+			.related-projects{max-width:1600px;margin:0 auto}
+			.related-header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #000;padding-bottom:8px;margin-bottom:24px}
+			.related-title{font-weight:700;font-size:18px;text-transform:uppercase}
+			.related-nav{display:flex;gap:12px;align-items:center}
+			.related-grid{display:flex;gap:24px;overflow-x:auto;padding-bottom:16px}
+			.related-card{flex:0 0 517px;display:flex;flex-direction:column;gap:8px}
+			.related-card figure{aspect-ratio:16/11;background:#eee;overflow:hidden;margin:0}
+			.related-card figure img{width:100%;height:100%;object-fit:cover;display:block}
+			.related-card .meta{display:flex;gap:8px;color:var(--c-grey-46);font-size:14px}
+			.related-card .title{font-weight:700;color:#000;text-transform:uppercase;font-size:18px}
+			/* Simple responsive adjustments */
+			@media (max-width: 1200px){
+				.grid-4{grid-template-columns:repeat(2,minmax(0,1fr))}
+				.cta-block{flex-direction:column;align-items:center}
+				.project-header{flex-direction:column;align-items:center}
+				.project-description{flex-direction:column}
+				.image-grid{height:600px}
+				.hero-images{height:600px}
+				.video-section{height:600px}
+				.full-image{height:600px}
+				.products-grid{justify-content:center}
+				.related-grid{flex-direction:column;overflow:visible}
+				.related-card{flex:1}
+			}
+			@media (max-width: 680px){
+				.grid-4{grid-template-columns:1fr}
+				.hero-images{height:400px}
+				.video-section{height:400px}
+				.full-image{height:400px}
+				.image-grid{height:400px;grid-template-columns:1fr;grid-template-rows:repeat(4,1fr)}
+				.product-card{flex:1;max-width:200px}
+			}
+		</style>
+			<link rel="stylesheet" href="/assets/css/brand.css" />
+	</head>
+	<body>
+		<Header />
+
+		<main>
+			<section class="hero-images">
+				<div class="image" style={`background-image:url('assets/img/57513e6581b1a374b5b1de68a8309907d0825fba.png')`}></div>
+				<div class="image" style={`background-image:url('assets/img/cdd50e6eb3ab797ee4518ec4d6b9862ac31639c1.png')`}></div>
+			</section>
+
+			<section class="px16 py12">
+				<div class="project-header">
+					<div class="project-logo">
+						<img src="assets/img/c2006a1e056971700e2358fbcada1cb96ef17c16.png" alt="A Estudio" height="44" />
+					</div>
+					<div class="project-info">
+						<h1 class="project-title">PROYECTO<br>ARMONÍA ORGÁNICA</h1>
+						<div class="project-meta">2024 | BOUTIQUE</div>
+						<div class="project-studio">
+							<a href="http://www.a-estudio.mx/">A ESTUDIO</a>
+						</div>
+						<div class="project-architects">
+							Ximena Díaz<br>
+							Guillermo Villegas
+						</div>
+						<div class="project-instagram">@_aestudio</div>
+						<blockquote class="project-quote">"Queremos diseñar un espacio donde cada rincón, cuente la historia de sus piezas y de la propia marca."</blockquote>
+					</div>
+				</div>
+			</section>
+
+			<section class="video-section">
+				<div class="video-overlay">
+					<h2>Esto es un vídeo de vimeo en autoplay</h2>
+				</div>
+			</section>
+
+			<section class="px16 py12">
+				<div class="project-description">
+					<div class="project-text">
+						<p>Armonía Orgánica es una boutique que no solo es un lugar para comprar, sino un refugio donde la naturaleza y la moda se entrelazan. Cada rincón de la boutique está diseñado para que los clientes se sientan como en casa, con áreas de descanso donde pueden relajarse y disfrute, Imagina una boutique que te envuelve en una atmósfera acogedora y natural, donde los materiales sean solo el vehículo para mostrar el corazón del diseño: los objetos. Los muros están revestidas con materiales que aportan calidez e incluso un toque rústico, con tonos terrosos y texturas que evocan la madera y la piedra, creando un ambiente acogedor y orgánico. Los pisos son una combinación de madera clara y de piedra suave, complementa perfectamente el ambiente, creando una sensación de conexión con la naturaleza.</p>
+						
+						<p>Es un espacio donde lo natural, la luz y la calidez son lo que predomina para invitar a los usuarios a vivir esa experiencia única que buscamos.La iluminación es suave y cálida, con lámparas que parecen flotar en el aire, creando un juego de sombras que invita a explorar cada rincón. Las estanterías son de piedra oscura, para resaltar los detalles que añaden un carácter único al espacio.</p>
+						
+						<p>Ees un espacio que celebra la belleza de los materiales naturales y cálidos, creando un refugio perfecto para quienes buscan algo especial. Es una boutique que no solo ofrece moda, sino que también celebra la belleza de la naturaleza. En este espacio, cada rincón está diseñado para reflejar la armonía y la frescura de los elementos naturales. Los productos en la boutique están cuidadosamente seleccionados, donde cada artículo cuenta una historia de respeto por el medio ambiente. Además, la iluminación suave y cálida, inspirada en la luz natural, resalta la belleza de cada pieza, haciendo que los clientes se sientan conectados con la esencia de la tierra.</p>
+						
+						<p>Incluso la disposición de la tienda está pensada para que los visitantes se sientan como si estuvieran paseando por un bosque encantado, con plantas vivas y elementos decorativos que recuerdan a la flora y fauna local. invitando a todos a disfrutar de una experiencia única y consciente. Un verdadero deleite para los sentidos.</p>
+					</div>
+					<div class="project-image" style={`background-image:url('assets/img/a4a13115d8cf54eecde725e5da3a29baf5f5c362.png')`}></div>
+				</div>
+			</section>
+
+			<section class="px16 py12">
+				<div class="image-grid">
+					<div class="grid-item" style={`background-image:url('assets/img/f63d20cbfdfcbe9ae4f87c233ae8599b5a129c19.png')`}></div>
+					<div class="grid-item" style={`background-image:url('assets/img/eb6733d248ef143265f1b97060376b776c5b8c7d.png')`}></div>
+					<div class="grid-item" style={`background-image:url('assets/img/f36ae037f1d19e10a938507589d1bcd4487a6563.png')`}></div>
+					<div class="grid-item" style={`background-image:url('assets/img/befde8b625217b1a5f131989d98f66e2d98eb3c5.png')`}></div>
+				</div>
+			</section>
+
+			<section class="px16 py12">
+				<div class="full-image" style={`background-image:url('assets/img/5e4da0c3715c412fd0136ad9411789a3674f6b81.png')`}></div>
+			</section>
+
+			<section class="px16 py12">
+				<div class="products-section">
+					<div class="products-header">
+						<h2 class="products-title">Productos utilizados</h2>
+					</div>
+					<div class="products-grid">
+						<div class="product-card">
+							<figure><img src="assets/img/52992fa2f8a7d4b0cdc16816e247ef3e69eceb22.png" alt="Rolling White Sand" /></figure>
+							<div class="name">Rolling White Sand</div>
+						</div>
+						<div class="product-card">
+							<figure><img src="assets/img/15d333bb476084c4bedd54d0b96be9b96128f26d.png" alt="KRION L507 Hickory" /></figure>
+							<div class="name">KRION L507 Hickory, serie Luxury</div>
+						</div>
+						<div class="product-card">
+							<figure><img src="assets/img/021ce0cdeee45a772fb666d27d21a7f54f7177af.png" alt="XTONE TERRE NERO" /></figure>
+							<div class="name">XTONE TERRE NERO</div>
+						</div>
+						<div class="product-card">
+							<figure><img src="assets/img/bdfb89117c4978d48baaec422470efd9d194277c.png" alt="Alpinus" /></figure>
+							<div class="name">Alpinus</div>
+						</div>
+						<div class="product-card">
+							<figure><img src="assets/img/fed05ad0d13a7903be220eb9e1be527e493ecd53.png" alt="Savannah Topo" /></figure>
+							<div class="name">Savannah Topo</div>
+						</div>
+						<div class="product-card">
+							<figure><img src="assets/img/84852b3a886bb4c80aa4f05b1079a7013c3ebe2d.png" alt="Savannah Topo Nature" /></figure>
+							<div class="name">Savannah Topo Nature Revestimiento</div>
+						</div>
+						<div class="product-card">
+							<figure><img src="assets/img/f35b08c36926b708a69eaaaa8a55a6c84aee7bf9.png" alt="Arco Ocre Sand" /></figure>
+							<div class="name">Arco Ocre Sand</div>
+						</div>
+						<div class="product-card">
+							<figure><img src="assets/img/57a0497dbdaabbb39b140907320791afe647ff2c.png" alt="Minnesota Ash" /></figure>
+							<div class="name">Minnesota Ash</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="px16 py12">
+				<div class="related-projects">
+					<div class="related-header">
+						<h2 class="related-title">Explora los proyectos ganadores de cada edición</h2>
+						<div class="related-nav">
+							<img src="assets/img/49edcabe46c24d4f3a5cc1fdbc205de78c54c11b.svg" alt="prev" height="36" />
+							<img src="assets/img/4ef2351eedf16f9bb4354bb2e6828a2b5a06a581.svg" alt="next" height="36" />
+						</div>
+					</div>
+					<div class="related-grid">
+						<article class="related-card">
+							<figure><img src="assets/img/e3ece7b7b8f62425503debe77801c85ad4f776d2.png" alt="Proyecto" /></figure>
+							<div class="meta"><span>A Estudio</span><span style="margin-left:auto">Boutique | 2024</span></div>
+							<div class="title">Project blabla</div>
+						</article>
+						<article class="related-card">
+							<figure><img src="assets/img/b930ffead46c151c7c5d8149f0a65c572a3323df.png" alt="Proyecto" /></figure>
+							<div class="meta"><span>A Estudio</span><span style="margin-left:auto">Boutique | 2024</span></div>
+							<div class="title">Project blabla</div>
+						</article>
+						<article class="related-card">
+							<figure><img src="assets/img/9381d3bc1bc44ced0804a8ae896ef25b1fa0948f.png" alt="Proyecto" /></figure>
+							<div class="meta"><span>A Estudio</span><span style="margin-left:auto">Boutique | 2024</span></div>
+							<div class="title">Project blabla</div>
+						</article>
+						<article class="related-card">
+							<figure><img src="assets/img/95eea4995a2c9152eeea8dbadd43ddd9257ed397.png" alt="Proyecto" /></figure>
+							<div class="meta"><span>A Estudio</span><span style="margin-left:auto">Boutique | 2024</span></div>
+							<div class="title">Project blabla</div>
+						</article>
+						<article class="related-card">
+							<figure><img src="assets/img/8b4a234dfe5233f8c9ae32018335fb9968cd47c6.png" alt="Proyecto" /></figure>
+							<div class="meta"><span>A Estudio</span><span style="margin-left:auto">Boutique | 2024</span></div>
+							<div class="title">Project blabla</div>
+						</article>
+						<article class="related-card">
+							<figure><img src="assets/img/d4cf64d7225a5a2e90e043762bedc6dddf9344f0.png" alt="Proyecto" /></figure>
+							<div class="meta"><span>A Estudio</span><span style="margin-left:auto">Boutique | 2024</span></div>
+							<div class="title">Project blabla</div>
+						</article>
+						<article class="related-card">
+							<figure><img src="assets/img/cc1caa443af6fe3be792fa207455b1f42d6d7cf5.png" alt="Proyecto" /></figure>
+							<div class="meta"><span>A Estudio</span><span style="margin-left:auto">Boutique | 2024</span></div>
+							<div class="title">Project blabla</div>
+						</article>
+						<article class="related-card">
+							<figure><img src="assets/img/7daa89a156d873aed8a15d40cfc161d9094b4890.png" alt="Proyecto" /></figure>
+							<div class="meta"><span>A Estudio</span><span style="margin-left:auto">Boutique | 2024</span></div>
+							<div class="title">Project blabla</div>
+						</article>
+					</div>
+					<div class="row" style="justify-content:flex-end;margin-top:16px">
+						<div class="underline" style="color:var(--c-grey-46);font-weight:700">Ver todos los proyectos</div>
+					</div>
+				</div>
+			</section>
+
+		<CtaSection/>
+		</main>
+
+		<Footer/>
+	</body>
+</html>

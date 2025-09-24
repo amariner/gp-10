@@ -1,16 +1,227 @@
 ---
+import Header from '../components/Header.astro';
+import SliderProyectos from '../components/SliderProyectos.astro';
+import SliderEstudios from '../components/SliderEstudios.astro';
+import Footer from '../components/Footer.astro';
+import CtaSection from '../components/CtaSection.astro';
 
+const projects = [
+	{
+		image: '/assets/img/proyectos/1.jpg',
+		alt: 'Proyecto 1',
+		category: 'Estudio 1',
+		detail: 'Minimalista | 2024',
+		title: 'Proyecto 1',
+		url: '/proyecto-1'
+	},
+	{
+		image: '/assets/img/proyectos/2.jpg',
+		alt: 'Proyecto 2',
+		category: 'Estudio 2',
+		detail: 'Minimalista | 2024',
+		title: 'Proyecto 2',
+		url: '/proyecto-2'
+	},
+	{
+		image: '/assets/img/proyectos/3.jpg',
+		alt: 'Proyecto 3',
+		category: 'Estudio 3',
+		detail: 'Minimalista | 2024',
+		title: 'Proyecto 3',
+		url: '/proyecto-3'
+	},
+	{
+		image: '/assets/img/proyectos/4.jpg',
+		alt: 'Proyecto 4',
+		category: 'Estudio 4',
+		detail: 'Minimalista | 2024',
+		title: 'Proyecto 4',
+		url: '/proyecto-4'
+	},
+	{
+		image: '/assets/img/proyectos/5.jpg',
+		alt: 'Proyecto 5',
+		category: 'Estudio 5',
+		detail: 'Minimalista | 2024',
+		title: 'Proyecto 5',
+		url: '/proyecto-5'
+	},
+	{
+		image: '/assets/img/proyectos/6.jpg',
+		alt: 'Proyecto 6',
+		category: 'Estudio 6',
+		detail: 'Minimalista | 2024',
+		title: 'Proyecto 6',
+		url: '/proyecto-6'
+	},
+	{
+		image: '/assets/img/proyectos/7.jpg',
+		alt: 'Proyecto 7',
+		category: 'Estudio 7',
+		detail: 'Minimalista | 2024',
+		title: 'Proyecto 7',
+		url: '/proyecto-7'
+	},
+	{
+		image: '/assets/img/proyectos/8.jpg',
+		alt: 'Proyecto 8',
+		category: 'Estudio 8',
+		detail: 'Minimalista | 2024',
+		title: 'Proyecto 8',
+		url: '/proyecto-8'
+	},
+	{
+		image: '/assets/img/proyectos/9.jpg',
+		alt: 'Proyecto 9',
+		category: 'Estudio 9',
+		detail: 'Minimalista | 2024',
+		title: 'Proyecto 9',
+		url: '/proyecto-9'
+	},
+	{
+		image: '/assets/img/proyectos/10.jpg',
+		alt: 'Proyecto 10',
+		category: 'Estudio 10',
+		detail: 'Minimalista | 2024',
+		title: 'Proyecto 10',
+		url: '/proyecto-10'
+	}
+];
+const studios = [
+	{ image: '/assets/img/estudios/estudio-1.jpg', alt: 'Estudio 1', title: 'Estudio 1', url: '/proyecto-1' },
+	{ image: '/assets/img/estudios/estudio-2.jpg', alt: 'Estudio 2', title: 'Estudio 2', url: '/proyecto-2' },
+	{ image: '/assets/img/estudios/estudio-3.jpg', alt: 'Estudio 3', title: 'Estudio 3', url: '/proyecto-3' },
+	{ image: '/assets/img/estudios/estudio-4.jpg', alt: 'Estudio 4', title: 'Estudio 4', url: '/proyecto-4' },
+	{ image: '/assets/img/estudios/estudio-5.jpg', alt: 'Estudio 5', title: 'Estudio 5', url: '/proyecto-5' },
+	{ image: '/assets/img/estudios/estudio-6.jpg', alt: 'Estudio 6', title: 'Estudio 6', url: '/proyecto-6' },
+	{ image: '/assets/img/estudios/estudio-7.jpg', alt: 'Estudio 7', title: 'Estudio 7', url: '/proyecto-7' },
+	{ image: '/assets/img/estudios/estudio-8.jpg', alt: 'Estudio 8', title: 'Estudio 8', url: '/proyecto-8' },
+	{ image: '/assets/img/estudios/estudio-9.jpg', alt: 'Estudio 9', title: 'Estudio 9', url: '/proyecto-9' },
+	{ image: '/assets/img/estudios/estudio-10.jpg', alt: 'Estudio 10', title: 'Estudio 10', url: '/proyecto-10' }
+];
 ---
 
-<html lang="en">
+
+<html lang="es">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" href="https://www.porcelanosa.com/PIcon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>10 de 10 — Home</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet" />
+		<style>
+			:root{--c-white:#ffffff;--c-black:#000000;--c-grey-84:#d5d5d5;--c-grey-46:#767676;--c-grey-34:#575757;--c-grey-16:#2b2c28;--c-grey-100:#939393}
+			*{box-sizing:border-box}
+			html,body{margin:0;padding:0;overflow-x:hidden}
+			body{font-family:Lato,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,"Helvetica Neue",Arial,"Apple Color Emoji","Segoe UI Emoji";color:#000;background:#fff}
+			.max{max-width:1728px;margin:0 auto}
+			.container{max-width:1600px;margin:0 auto}
+			.px16{padding-left:16px;padding-right:16px}
+			.px20{padding-left:20px;padding-right:20px}
+			.pt150{padding-top:150px}
+			.py12{padding-top:48px;padding-bottom:48px}
+			.py20{padding-top:80px;padding-bottom:80px}
+			.py16{padding-top:64px;padding-bottom:64px}
+			.py5{padding-top:20px;padding-bottom:20px}
+			.py0{padding-top:0;padding-bottom:0}
+			.mt24{margin-top:24px}
+			.mt48{margin-top:48px}
+			.mb0{margin-bottom:0}
+			.center{text-align:center}
+			.uppercase{text-transform:uppercase}
+			.grid{display:grid;gap:24px}
+			.grid-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+			.grid-5{grid-template-columns:repeat(5,minmax(0,1fr))}
+			.row{display:flex;gap:24px}
+			.between{display:flex;justify-content:space-between;align-items:center}
+			header .logo{font-family:"Porcelanosa",serif;font-weight:400;font-size:32px;line-height:64px;letter-spacing:.02em}
+			.hero{background:#000;height:100vh;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+			.hero-video{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:0}
+			.hero .autoplay{color:#fff;font-size:14px;position:relative;z-index:2}
+			.hero .cta-arrow{position:absolute;right:32px;bottom:32px;height:50px;width:50px;border:2px solid #fff;display:grid;place-items:center;z-index:2;transform:rotate(90deg)}
+			.section-title{font-weight:700;color:var(--c-grey-16);font-size:30px}
+			.section-sub{color:var(--c-grey-46);font-size:18px;line-height:1.5}
+			.underline{position:relative;display:inline-block}
+			.underline:after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:#000}
+			.card figure{aspect-ratio:16/11;background:#eee;overflow:hidden;margin:0}
+			.card figure img{width:100%;height:100%;object-fit:cover;display:block}
+			.card .meta{display:flex;gap:12px;color:var(--c-grey-46);font-size:14px;margin-top:4px;margin-bottom:6px}
+			.card .title{font-weight:700;color:#000;text-transform:uppercase;font-size:18px}
+			.card-link{display:block;height:100%;text-decoration:none;color:inherit;cursor:pointer}
+			.studios .studio{display:flex;flex-direction:column;gap:8px}
+			.studio .thumb{aspect-ratio:412/400;background:#eee}
+			.cta-block{display:flex;gap:48px;align-items:flex-end;justify-content:center}
+			.cta-block .image{width:600px;max-width:100%;aspect-ratio:1/1;background-size:cover;background-position:center}
+			.cta-block .copy{width:600px;max-width:100%}
+			.link-stroke{height:50px;display:grid;place-items:center;padding:0 22px;border:2px solid #000}
+			.link-more{font-size:16px;padding:8px 0;display:inline-block}
+			footer.site-footer{border-top:1px solid var(--c-grey-84)}
+			.footer-top{border-bottom:1px solid var(--c-grey-84)}
+			.footer-menu{display:flex;gap:16px}
+			.footer-menu a{font-weight:700;font-size:16px;line-height:26px;color:#767676;text-decoration:none;text-transform:uppercase}
+			.social{display:flex;gap:12px}
+			.social .dot{height:32px;width:32px;border-radius:16px;background:#000;display:grid;place-items:center}
+			.copyright{color:var(--c-grey-100);font-size:12.8px}
+			.brandmark{height:140px;width:190px;margin:0 auto}
+			/* Simple responsive adjustments */
+			@media (max-width: 1200px){
+				.grid-4{grid-template-columns:repeat(2,minmax(0,1fr))}
+				.cta-block{flex-direction:column;align-items:center}
+			}
+			@media (max-width: 680px){
+				.grid-4{grid-template-columns:1fr}
+				.hero{height:420px}
+			}
+		</style>
+			<link rel="stylesheet" href="/assets/css/brand.css" />
 	</head>
-	<body>
-		<h1>Astro</h1>
+	<body style="position: relative;">
+		<Header />
+
+		<div class="hero">
+			<video class="hero-video" autoplay muted loop playsinline>
+				<source src="/videos/home-video.mp4" type="video/mp4">
+			</video>
+			<a href="#content" class="cta-arrow" aria-label="Ir al contenido">
+				<img src="assets/img/c582bf20c9c9867b584a5c44488cc4a93ecd5090.svg" alt="" height="20" width="12" />
+			</a>
+		</div>
+
+		<main>
+			<section id="content" class="px16 py20">
+				<div class="container center">
+					<h2 class="section-title mb0">10 de 10: Diseño que conecta con la materia</h2>
+					<p class="section-sub mt24">Una celebración del diseño contemporáneo donde la creatividad, la sostenibilidad y la conexión con la naturaleza se transforman en experiencias habitables.  Cada edición selecciona 10 despachos que reinterpretan los materiales y las texturas de la marca a través de espacios únicos en México.</p>
+					<div class="mt24" style="color:var(--c-grey-46);font-weight:700;">SABER MÁS SOBRE 10 DE 10</div>
+				</div>
+			</section>
+
+			<SliderProyectos projects={projects} />
+
+			<div class="mt48">
+				<SliderEstudios studios={studios} />
+			</div>
+
+		</main>
+
+		<CtaSection/>
+		<Footer/>
+
+		<script>
+			// Smooth scroll for CTA arrow
+			document.querySelector('.cta-arrow')?.addEventListener('click', function(e) {
+				e.preventDefault();
+				const target = document.getElementById('content');
+				if (target) {
+					target.scrollIntoView({
+						behavior: 'smooth',
+						block: 'start'
+					});
+				}
+			});
+		</script>
 	</body>
 </html>

@@ -1,0 +1,217 @@
+---
+import Header from '../components/Header.astro';
+import CtaSection from '../components/CtaSection.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<html lang="es">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="https://www.porcelanosa.com/PIcon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Proyectos — 10 de 10</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet" />
+		<style>
+			:root{--c-white:#ffffff;--c-black:#000000;--c-grey-84:#d5d5d5;--c-grey-46:#767676;--c-grey-34:#575757;--c-grey-16:#2b2c28;--c-grey-100:#939393}
+			*{box-sizing:border-box}
+			html,body{margin:0;padding:0}
+			body{font-family:Lato,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,"Helvetica Neue",Arial,"Apple Color Emoji","Segoe UI Emoji";color:#000;background:#fff}
+			.max{max-width:1728px;margin:0 auto}
+			.container{max-width:1600px;margin:0 auto}
+			.px16{padding-left:16px;padding-right:16px}
+			.px20{padding-left:20px;padding-right:20px}
+			.py12{padding-top:48px;padding-bottom:48px}
+			.py5{padding-top:20px;padding-bottom:20px}
+			.py0{padding-top:0;padding-bottom:0}
+			.mt24{margin-top:24px}
+			.mb0{margin-bottom:0}
+			.center{text-align:center}
+			.uppercase{text-transform:uppercase}
+			.grid{display:grid;gap:24px}
+			.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+			.row{display:flex;gap:24px}
+			.between{display:flex;justify-content:space-between;align-items:center}
+			header.site-header{position:sticky;top:0;height:86px;display:flex;align-items:center;justify-content:center;z-index:10;background:#fff}
+			header.site-header .bar{height:86px;border-bottom:1px solid var(--c-grey-84);display:flex;align-items:center;justify-content:center}
+			header .logo{font-family:"Porcelanosa",serif;font-weight:400;font-size:32px;line-height:64px;letter-spacing:.02em;color:#000}
+			.section-title{font-weight:700;color:var(--c-grey-16);font-size:24px}
+			.section-sub{color:var(--c-grey-46);font-size:18px;line-height:1.5}
+			.card figure{aspect-ratio:16/11;background:#eee;overflow:hidden;margin:0}
+			.card figure img{width:100%;height:100%;object-fit:cover;display:block}
+			.card .meta{display:flex;gap:8px;color:var(--c-grey-46);font-size:14px}
+			.card .title{font-weight:700;color:#000;text-transform:uppercase;font-size:18px}
+			.cta-block{display:flex;gap:48px;align-items:flex-end;justify-content:center}
+			.cta-block .image{width:600px;max-width:100%;aspect-ratio:1/1;background-size:cover;background-position:center}
+			.cta-block .copy{width:600px;max-width:100%}
+			.link-stroke{height:50px;display:grid;place-items:center;padding:0 22px;border:2px solid #000}
+			footer.site-footer{border-top:1px solid var(--c-grey-84)}
+			.footer-top{border-bottom:1px solid var(--c-grey-84)}
+			.footer-menu{display:flex;gap:16px}
+			.footer-menu a{font-weight:700;font-size:16px;line-height:26px;color:#767676;text-decoration:none;text-transform:uppercase}
+			.social{display:flex;gap:12px}
+			.social .dot{height:32px;width:32px;border-radius:16px;background:#000;display:grid;place-items:center}
+			.copyright{color:var(--c-grey-100);font-size:12.8px}
+			.brandmark{height:140px;width:190px;margin:0 auto}
+			.filters{display:flex;gap:48px;justify-content:flex-end;margin-bottom:48px}
+			.filter{width:400px;height:72px;border:1px solid var(--c-grey-84);border-radius:28px 28px 0 0;display:flex;align-items:center;padding:0 16px;gap:12px;background:#fff}
+			.filter input{flex:1;border:none;outline:none;font-size:16px;color:var(--c-grey-46)}
+			.filter input::placeholder{color:var(--c-grey-46)}
+			.filter-icon{width:24px;height:24px;flex-shrink:0}
+			.filter-dropdown{width:48px;height:48px;display:grid;place-items:center;flex-shrink:0}
+			/* Simple responsive adjustments */
+			@media (max-width: 1200px){
+				.grid-3{grid-template-columns:repeat(2,minmax(0,1fr))}
+				.cta-block{flex-direction:column;align-items:center}
+				.filters{flex-direction:column;gap:16px}
+			}
+			@media (max-width: 680px){
+				.grid-3{grid-template-columns:1fr}
+			}
+		</style>
+			<link rel="stylesheet" href="/assets/css/brand.css" />
+	</head>
+	<body>
+		<Header />
+
+		<main>
+			<section class="px16 py12">
+				<div class="container center">
+					<h1 class="section-title mb0">Los espacios de cada edición</h1>
+					<p class="section-sub mt24">Explora los proyectos seleccionados en las distintas ediciones de 10 de 10: propuestas arquitectónicas que redefinen el diseño de interiores a través de la luz, los materiales y la relación con el entorno natural.</p>
+				</div>
+			</section>
+
+			<section class="px16 py12">
+				<div class="container">
+					<div class="filters">
+						<div class="filter">
+							<div class="filter-dropdown">
+								<img src="assets/img/9c92f14e4586d8a2a0dd99451ef01a620b97ebee.svg" alt="" class="filter-icon" />
+							</div>
+							<input type="text" placeholder="Filtrar por edición" />
+						</div>
+						<div class="filter">
+							<div class="filter-icon">
+								<img src="assets/img/173a35c86e0a8bd0cfb8e7a945894eb1a605ab7c.svg" alt="" />
+							</div>
+							<input type="text" placeholder="Buscar" />
+							<div class="filter-dropdown">
+								<img src="assets/img/221134f916816dea22f70f5aa313fdf088345360.svg" alt="" class="filter-icon" />
+							</div>
+						</div>
+					</div>
+
+					<div class="grid grid-3">
+						<article class="card">
+							<figure><img src="assets/img/e3ece7b7b8f62425503debe77801c85ad4f776d2.png" alt="Proyecto" /></figure>
+							<div class="meta mt12"><span>A Estudio</span><span style="margin-left:auto">Boutique | 2024</span></div>
+							<div class="title mt12">Project blabla</div>
+						</article>
+						<article class="card">
+							<figure><img src="assets/img/5053d7d6175f8f7c138fa9e6a06aec108549c843.png" alt="Proyecto" /></figure>
+							<div class="meta mt12"><span>Arquify</span><span style="margin-left:auto">Boutique | 2024</span></div>
+							<div class="title mt12">Project blabla</div>
+						</article>
+						<article class="card">
+							<figure><img src="assets/img/55ec67c59da10488bbcd4650be232adaa0a6d386.png" alt="Proyecto" /></figure>
+							<div class="meta mt12"><span>Llave Maestra</span><span style="margin-left:auto">Boutique | 2024</span></div>
+							<div class="title mt12">Project blabla</div>
+						</article>
+						<article class="card">
+							<figure><img src="assets/img/9e38e88e74526b18e6b18b80305a5596f745ec82.png" alt="Proyecto" /></figure>
+							<div class="meta mt12"><span>Innovatech</span><span style="margin-left:auto">Boutique | 2024</span></div>
+							<div class="title mt12">Project phoenix</div>
+						</article>
+						<article class="card">
+							<figure><img src="assets/img/c791e5f01c79702ed340a2e42cff261468a5c3a8.png" alt="Proyecto" /></figure>
+							<div class="meta mt12"><span>DesignHub</span><span style="margin-left:auto">Boutique | 2024</span></div>
+							<div class="title mt12">Project odyssey</div>
+						</article>
+						<article class="card">
+							<figure><img src="assets/img/e85aa12860fc63574e64e92f3e9bbe70ffc5b2b1.png" alt="Proyecto" /></figure>
+							<div class="meta mt12"><span>Creative Minds</span><span style="margin-left:auto">Boutique | 2024</span></div>
+							<div class="title mt12">Project horizon</div>
+						</article>
+						<article class="card">
+							<figure><img src="assets/img/255f89d456012d16e1ab0debba26fd667a9c5290.png" alt="Proyecto" /></figure>
+							<div class="meta mt12"><span>Pixel Perfect</span><span style="margin-left:auto">Boutique | 2024</span></div>
+							<div class="title mt12">Project nebula</div>
+						</article>
+						<article class="card">
+							<figure><img src="assets/img/3e020396bc16debd7ff75a4fde90694977522c34.png" alt="Proyecto" /></figure>
+							<div class="meta mt12"><span>Future Designs</span><span style="margin-left:auto">Boutique | 2024</span></div>
+							<div class="title mt12">Project quantum</div>
+						</article>
+						<article class="card">
+							<figure><img src="assets/img/e59bcf4d0c4b019ef1a7547b39d8bf05c087fa16.png" alt="Proyecto" /></figure>
+							<div class="meta mt12"><span>Pixel Perfect</span><span style="margin-left:auto">Boutique | 2024</span></div>
+							<div class="title mt12">Project nebula</div>
+						</article>
+						<article class="card">
+							<figure><img src="assets/img/5049e4b2c3ab1d047033aa5d16cba7a6d8d83df0.png" alt="Proyecto" /></figure>
+							<div class="meta mt12"><span>Future Designs</span><span style="margin-left:auto">Boutique | 2024</span></div>
+							<div class="title mt12">Project quantum</div>
+						</article>
+						<article class="card">
+							<figure><img src="assets/img/e3ece7b7b8f62425503debe77801c85ad4f776d2.png" alt="Proyecto" /></figure>
+							<div class="meta mt12"><span>A Estudio</span><span style="margin-left:auto">Boutique | 2023</span></div>
+							<div class="title mt12">Project blabla</div>
+						</article>
+						<article class="card">
+							<figure><img src="assets/img/5053d7d6175f8f7c138fa9e6a06aec108549c843.png" alt="Proyecto" /></figure>
+							<div class="meta mt12"><span>Arquify</span><span style="margin-left:auto">Boutique | 2023</span></div>
+							<div class="title mt12">Project blabla</div>
+						</article>
+						<article class="card">
+							<figure><img src="assets/img/55ec67c59da10488bbcd4650be232adaa0a6d386.png" alt="Proyecto" /></figure>
+							<div class="meta mt12"><span>Llave Maestra</span><span style="margin-left:auto">Boutique | 2023</span></div>
+							<div class="title mt12">Project blabla</div>
+						</article>
+						<article class="card">
+							<figure><img src="assets/img/9e38e88e74526b18e6b18b80305a5596f745ec82.png" alt="Proyecto" /></figure>
+							<div class="meta mt12"><span>Innovatech</span><span style="margin-left:auto">Boutique | 2023</span></div>
+							<div class="title mt12">Project phoenix</div>
+						</article>
+						<article class="card">
+							<figure><img src="assets/img/c791e5f01c79702ed340a2e42cff261468a5c3a8.png" alt="Proyecto" /></figure>
+							<div class="meta mt12"><span>DesignHub</span><span style="margin-left:auto">Boutique | 2023</span></div>
+							<div class="title mt12">Project odyssey</div>
+						</article>
+						<article class="card">
+							<figure><img src="assets/img/e85aa12860fc63574e64e92f3e9bbe70ffc5b2b1.png" alt="Proyecto" /></figure>
+							<div class="meta mt12"><span>Creative Minds</span><span style="margin-left:auto">Boutique | 2023</span></div>
+							<div class="title mt12">Project horizon</div>
+						</article>
+						<article class="card">
+							<figure><img src="assets/img/255f89d456012d16e1ab0debba26fd667a9c5290.png" alt="Proyecto" /></figure>
+							<div class="meta mt12"><span>Pixel Perfect</span><span style="margin-left:auto">Boutique | 2023</span></div>
+							<div class="title mt12">Project nebula</div>
+						</article>
+						<article class="card">
+							<figure><img src="assets/img/3e020396bc16debd7ff75a4fde90694977522c34.png" alt="Proyecto" /></figure>
+							<div class="meta mt12"><span>Future Designs</span><span style="margin-left:auto">Boutique | 2023</span></div>
+							<div class="title mt12">Project quantum</div>
+						</article>
+						<article class="card">
+							<figure><img src="assets/img/e59bcf4d0c4b019ef1a7547b39d8bf05c087fa16.png" alt="Proyecto" /></figure>
+							<div class="meta mt12"><span>Pixel Perfect</span><span style="margin-left:auto">Boutique | 2023</span></div>
+							<div class="title mt12">Project nebula</div>
+						</article>
+						<article class="card">
+							<figure><img src="assets/img/5049e4b2c3ab1d047033aa5d16cba7a6d8d83df0.png" alt="Proyecto" /></figure>
+							<div class="meta mt12"><span>Future Designs</span><span style="margin-left:auto">Boutique | 2023</span></div>
+							<div class="title mt12">Project quantum</div>
+						</article>
+					</div>
+				</div>
+			</section>
+
+		<CtaSection/>
+		</main>
+
+		<Footer/>
+	</body>
+</html>

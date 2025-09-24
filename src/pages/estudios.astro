@@ -1,0 +1,207 @@
+---
+import Header from '../components/Header.astro';
+import CtaSection from '../components/CtaSection.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<html lang="es">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="https://www.porcelanosa.com/PIcon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Estudios — 10 de 10</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet" />
+		<style>
+			:root{--c-white:#ffffff;--c-black:#000000;--c-grey-84:#d5d5d5;--c-grey-46:#767676;--c-grey-34:#575757;--c-grey-16:#2b2c28;--c-grey-100:#939393}
+			*{box-sizing:border-box}
+			html,body{margin:0;padding:0}
+			body{font-family:Lato,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,"Helvetica Neue",Arial,"Apple Color Emoji","Segoe UI Emoji";color:#000;background:#fff}
+			.max{max-width:1728px;margin:0 auto}
+			.container{max-width:1600px;margin:0 auto}
+			.px16{padding-left:16px;padding-right:16px}
+			.px20{padding-left:20px;padding-right:20px}
+			.py12{padding-top:48px;padding-bottom:48px}
+			.py5{padding-top:20px;padding-bottom:20px}
+			.py0{padding-top:0;padding-bottom:0}
+			.mt24{margin-top:24px}
+			.mb0{margin-bottom:0}
+			.center{text-align:center}
+			.uppercase{text-transform:uppercase}
+			.grid{display:grid;gap:24px}
+			.grid-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+			.grid-5{grid-template-columns:repeat(5,minmax(0,1fr))}
+			.row{display:flex;gap:24px}
+			.between{display:flex;justify-content:space-between;align-items:center}
+			header.site-header{position:sticky;top:0;height:86px;display:flex;align-items:center;justify-content:center;z-index:10;background:#fff}
+			header.site-header .bar{height:86px;border-bottom:1px solid var(--c-grey-84);display:flex;align-items:center;justify-content:center}
+			header .logo{font-family:"Porcelanosa",serif;font-weight:400;font-size:32px;line-height:64px;letter-spacing:.02em;color:#000}
+			.section-title{font-weight:700;color:var(--c-grey-16);font-size:24px}
+			.section-sub{color:var(--c-grey-46);font-size:18px;line-height:1.5}
+			.card figure{aspect-ratio:16/11;background:#eee;overflow:hidden;margin:0}
+			.card figure img{width:100%;height:100%;object-fit:cover;display:block}
+			.card .meta{display:flex;gap:8px;color:var(--c-grey-46);font-size:14px}
+			.card .title{font-weight:700;color:#000;text-transform:uppercase;font-size:18px}
+			.studios .studio{display:flex;flex-direction:column;gap:8px;align-items:center}
+			.studio .thumb{aspect-ratio:412/400;background:#eee;width:100%}
+			.studio .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+			.studio .handle{color:var(--c-grey-100);font-size:14px;font-weight:700}
+			.studio .name{color:#000;font-size:18px;font-weight:700;text-transform:uppercase}
+			.cta-block{display:flex;gap:48px;align-items:flex-end;justify-content:center}
+			.cta-block .image{width:600px;max-width:100%;aspect-ratio:1/1;background-size:cover;background-position:center}
+			.cta-block .copy{width:600px;max-width:100%}
+			.link-stroke{height:50px;display:grid;place-items:center;padding:0 22px;border:2px solid #000}
+			footer.site-footer{border-top:1px solid var(--c-grey-84)}
+			.footer-top{border-bottom:1px solid var(--c-grey-84)}
+			.footer-menu{display:flex;gap:16px}
+			.footer-menu a{font-weight:700;font-size:16px;line-height:26px;color:#767676;text-decoration:none;text-transform:uppercase}
+			.social{display:flex;gap:12px}
+			.social .dot{height:32px;width:32px;border-radius:16px;background:#000;display:grid;place-items:center}
+			.copyright{color:var(--c-grey-100);font-size:12.8px}
+			.brandmark{height:140px;width:190px;margin:0 auto}
+			.underline{position:relative;display:inline-block}
+			.underline:after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:#000}
+			/* Simple responsive adjustments */
+			@media (max-width: 1200px){
+				.grid-4{grid-template-columns:repeat(2,minmax(0,1fr))}
+				.cta-block{flex-direction:column;align-items:center}
+			}
+			@media (max-width: 680px){
+				.grid-4{grid-template-columns:1fr}
+			}
+		</style>
+			<link rel="stylesheet" href="/assets/css/brand.css" />
+	</head>
+	<body>
+		<Header />
+
+		<main>
+			<section class="px16 py12">
+				<div class="container center">
+					<h1 class="section-title mb0">Los estudios que dan forma a cada proyecto</h1>
+					<p class="section-sub mt24">10 de 10 reúne cada año a despachos con una visión distintiva del diseño y la arquitectura.<br>Descubre a los participantes de cada edición y conoce el talento detrás de cada espacio creado con materiales PORCELANOSA.</p>
+				</div>
+			</section>
+
+			<section class="px16 py12 studios">
+				<div class="container">
+					<div class="grid grid-4">
+						<div class="studio">
+							<div class="thumb"><img src="assets/img/b930ffead46c151c7c5d8149f0a65c572a3323df.png" alt="Estudio" /></div>
+							<div class="handle">@_aestudio</div>
+							<div class="name">A ESTUDIO</div>
+						</div>
+						<div class="studio">
+							<div class="thumb"><img src="assets/img/9381d3bc1bc44ced0804a8ae896ef25b1fa0948f.png" alt="Estudio" /></div>
+							<div class="handle">@_aestudio</div>
+							<div class="name">A ESTUDIO</div>
+						</div>
+						<div class="studio">
+							<div class="thumb"><img src="assets/img/8b4a234dfe5233f8c9ae32018335fb9968cd47c6.png" alt="Estudio" /></div>
+							<div class="handle">@_aestudio</div>
+							<div class="name">A ESTUDIO</div>
+						</div>
+						<div class="studio">
+							<div class="thumb"><img src="assets/img/95eea4995a2c9152eeea8dbadd43ddd9257ed397.png" alt="Estudio" /></div>
+							<div class="handle">@_aestudio</div>
+							<div class="name">A ESTUDIO</div>
+						</div>
+						<div class="studio">
+							<div class="thumb"><img src="assets/img/d4cf64d7225a5a2e90e043762bedc6dddf9344f0.png" alt="Estudio" /></div>
+							<div class="handle">@_aestudio</div>
+							<div class="name">A ESTUDIO</div>
+						</div>
+						<div class="studio">
+							<div class="thumb"><img src="assets/img/cc1caa443af6fe3be792fa207455b1f42d6d7cf5.png" alt="Estudio" /></div>
+							<div class="handle">@_aestudio</div>
+							<div class="name">A ESTUDIO</div>
+						</div>
+						<div class="studio">
+							<div class="thumb"><img src="assets/img/7daa89a156d873aed8a15d40cfc161d9094b4890.png" alt="Estudio" /></div>
+							<div class="handle">@_aestudio</div>
+							<div class="name">A ESTUDIO</div>
+						</div>
+						<div class="studio">
+							<div class="thumb"><img src="assets/img/825bb55ae501811821dc9fa9dbdbd0aaa52ee937.png" alt="Estudio" /></div>
+							<div class="handle">@_aestudio</div>
+							<div class="name">A ESTUDIO</div>
+						</div>
+						<div class="studio">
+							<div class="thumb"><img src="assets/img/32f1ad091e712f89438d21ebd5e4d2bf54e266ea.png" alt="Estudio" /></div>
+							<div class="handle">@_aestudio</div>
+							<div class="name">A ESTUDIO</div>
+						</div>
+						<div class="studio">
+							<div class="thumb"><img src="assets/img/37369bfbbea849113fb1beeaddeb66586eee1a8c.png" alt="Estudio" /></div>
+							<div class="handle">@_aestudio</div>
+							<div class="name">A ESTUDIO</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="px16 py12">
+				<div class="container">
+					<div class="between py5">
+						<h2 class="uppercase" style="font-weight:700;font-size:18px">Explora los proyectos ganadores de cada edición</h2>
+						<div class="row" aria-hidden="true">
+							<img src="assets/img/49edcabe46c24d4f3a5cc1fdbc205de78c54c11b.svg" alt="prev" height="36" />
+							<img src="assets/img/4ef2351eedf16f9bb4354bb2e6828a2b5a06a581.svg" alt="next" height="36" />
+						</div>
+					</div>
+					<div class="grid grid-5 mt24">
+						<article class="card">
+							<figure><img src="assets/img/e3ece7b7b8f62425503debe77801c85ad4f776d2.png" alt="Proyecto" /></figure>
+							<div class="meta mt12"><span>A Estudio</span><span style="margin-left:auto">Boutique | 2024</span></div>
+							<div class="title mt12">Project blabla</div>
+						</article>
+						<article class="card">
+							<figure><img src="assets/img/b930ffead46c151c7c5d8149f0a65c572a3323df.png" alt="Proyecto" /></figure>
+							<div class="meta mt12"><span>A Estudio</span><span style="margin-left:auto">Boutique | 2024</span></div>
+							<div class="title mt12">Project blabla</div>
+						</article>
+						<article class="card">
+							<figure><img src="assets/img/9381d3bc1bc44ced0804a8ae896ef25b1fa0948f.png" alt="Proyecto" /></figure>
+							<div class="meta mt12"><span>A Estudio</span><span style="margin-left:auto">Boutique | 2024</span></div>
+							<div class="title mt12">Project blabla</div>
+						</article>
+						<article class="card">
+							<figure><img src="assets/img/95eea4995a2c9152eeea8dbadd43ddd9257ed397.png" alt="Proyecto" /></figure>
+							<div class="meta mt12"><span>A Estudio</span><span style="margin-left:auto">Boutique | 2024</span></div>
+							<div class="title mt12">Project blabla</div>
+						</article>
+						<article class="card">
+							<figure><img src="assets/img/8b4a234dfe5233f8c9ae32018335fb9968cd47c6.png" alt="Proyecto" /></figure>
+							<div class="meta mt12"><span>A Estudio</span><span style="margin-left:auto">Boutique | 2024</span></div>
+							<div class="title mt12">Project blabla</div>
+						</article>
+						<article class="card">
+							<figure><img src="assets/img/d4cf64d7225a5a2e90e043762bedc6dddf9344f0.png" alt="Proyecto" /></figure>
+							<div class="meta mt12"><span>A Estudio</span><span style="margin-left:auto">Boutique | 2024</span></div>
+							<div class="title mt12">Project blabla</div>
+						</article>
+						<article class="card">
+							<figure><img src="assets/img/cc1caa443af6fe3be792fa207455b1f42d6d7cf5.png" alt="Proyecto" /></figure>
+							<div class="meta mt12"><span>A Estudio</span><span style="margin-left:auto">Boutique | 2024</span></div>
+							<div class="title mt12">Project blabla</div>
+						</article>
+						<article class="card">
+							<figure><img src="assets/img/7daa89a156d873aed8a15d40cfc161d9094b4890.png" alt="Proyecto" /></figure>
+							<div class="meta mt12"><span>A Estudio</span><span style="margin-left:auto">Boutique | 2024</span></div>
+							<div class="title mt12">Project blabla</div>
+						</article>
+					</div>
+					<div class="row" style="justify-content:flex-end;margin-top:16px">
+						<div class="underline" style="color:var(--c-grey-46);font-weight:700">Ver todos los proyectos</div>
+					</div>
+				</div>
+			</section>
+
+		<CtaSection/>
+		</main>
+
+		<Footer/>
+	</body>
+</html>
